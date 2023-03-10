@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express')
 const engine = require('express-handlebars').engine
 const Server = require('socket.io').Server;
+const { default: mongoose } = require('mongoose');
 
 const PORT = 3000
 
@@ -37,8 +38,8 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-const productManager = require("./productManager"); //*
-const product = new productManager("./src/productos.json") //*
+const productManager = require("./dao/productManagerFS.js");
+const product = new productManager("./productos.json")
 
 serverSockets.on('connection', (socket) => {
     console.log(`Se han conectado, socket id ${socket.id}`)
@@ -48,4 +49,15 @@ serverSockets.on('connection', (socket) => {
 
 })
 
-serverHttp.on('error', (error) => console.log(error));
+// const conectar = async()=>{
+//     try {
+//         await mongoose.connect('mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce')
+//         console.log('Conexión a BD establecida')
+//     } catch (error) {
+//         console.log(`Error al conectarse con el servidor de BD: ${error}`)
+//     }
+// }
+
+// conectar()
+
+serverHttp.on('error', (error) => console.log(error))

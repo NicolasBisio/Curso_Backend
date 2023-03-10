@@ -1,7 +1,7 @@
 const Router = require("express").Router;
 const router = Router();
 
-const cartManager = require("../cartManager");
+const cartManager = require("../dao/cartManagerFS.js");
 const cart = new cartManager("./src/cart.json")
 
 router.post("/", (req, res) => {

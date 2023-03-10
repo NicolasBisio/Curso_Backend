@@ -34,6 +34,7 @@ class productManager {
     }
 
     async getProductById(id) {
+        console.log(this.path)
         if (fs.existsSync(this.path)) {
 
             let products = await fs.promises.readFile(this.path, "utf-8")
