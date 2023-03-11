@@ -1,6 +1,7 @@
 const productsModel = require('./models/products.models.js')
 
 class productManagerDB {
+    
     async getProducts(req, res) {
         let products;
         try {

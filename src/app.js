@@ -43,21 +43,28 @@ const product = new productManager("./productos.json")
 
 serverSockets.on('connection', (socket) => {
     console.log(`Se han conectado, socket id ${socket.id}`)
-    product.getProducts().then(products => {
-        socket.emit('getProducts', {products})
+    // product.getProducts().then(products => {
+    //     socket.emit('getProducts', { products })
+    // })
+
+    socket.on('message', (message) => {
+        console.log(`${message.emisor} dice ${message.mensaje}`);
+
+        serverSockets.emit('newMessage', message)
+
     })
 
 })
 
-// const conectar = async()=>{
-//     try {
-//         await mongoose.connect('mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce')
-//         console.log('Conexión a BD establecida')
-//     } catch (error) {
-//         console.log(`Error al conectarse con el servidor de BD: ${error}`)
-//     }
-// }
+const conectar = async()=>{
+    try {
+        await mongoose.connect('mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce')
+        console.log('Conexión a BD establecida')
+    } catch (error) {
+        console.log(`Error al conectarse con el servidor de BD: ${error}`)
+    }
+}
 
-// conectar()
+conectar()
 
 serverHttp.on('error', (error) => console.log(error))

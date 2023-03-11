@@ -1,71 +1,60 @@
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+const cartsModel = require('./models/carts.models.js')
 
 class cartManagerDB {
-    constructor(archivo) {
-        this.path = archivo;
-    }
 
-    async getCarts() {
-        if (fs.existsSync(this.path)) {
-            let cartsTxt = await fs.promises.readFile(this.path, "utf-8");
-            return JSON.parse(cartsTxt);
-        } else {
-            return []
-        }
-    }
-
-    async addCart() {
-        let carts = await this.getCarts()
-        let newCart = {
-            id: uuidv4(),
-            products: []
-        }
-        carts.push(newCart)
-        await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
-        return carts
-    }
-
-    async getCartById(id) {
-        if (fs.existsSync(this.path)) {
-
-            let carts = await fs.promises.readFile(this.path, "utf-8")
-            carts = JSON.parse(carts)
-
-            const cartById = carts.find(element => element.id == id);
-            if (cartById) {
-                return cartById
-            } else {
-                console.error("Not Found 1")
-            }
-        } else {
-            console.error("Not Found 2")
-        }
-    }
-
-    async addProductToCart(idCart, idProd) {
-        const carts = await this.getCarts();
-        const newProduct = {
-            id: idProd,
-            quantity: 1
+    async getCarts(req, res) {
+        let carts;
+        try {
+            carts = await cartsModel.find()
+        } catch (error) {
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(500).json({
+                mensaje: `Error al obtener los carritos de la DB`
+            })
         }
 
-        let indexCart = await carts.findIndex(element => element.id == idCart)
-        if (indexCart !== -1) {
-            let indexProd = await carts[indexCart].products.findIndex(element => element.id == idProd)
-            if (indexProd === -1) {
-                await carts[indexCart].products.push(newProduct)
-                await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
-                return carts
-            } else {
-                carts[indexCart].products[indexProd].quantity++
-                await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
-                return carts
-            }
-        } else {
-            console.error("Not Found 1")
-        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
+            carts
+        })
+
     }
+
+    async addCart(req, res) {
+        let cartToCreate = req.body;
+
+        let newCart = await cartsModel.create(cartToCreate);
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(201).json({
+            newCart
+        })
+
+    }
+
+    async updateCart(req, res) {
+        let id = req.params.pid;
+
+        let cartToUpdate = req.body;
+        let newCart = await cartsModel.updateOne({ _id: id }, cartToUpdate)
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
+            newCart
+        })
+    }
+
+    async deleteCart(req, res) {
+        let id = req.params.pid;
+
+        let cartToDelete = await productsModel.deleteOne({ _id: id });
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
+            cartToDelete
+        })
+    }
+
 }
 
 module.exports = cartManagerDB;

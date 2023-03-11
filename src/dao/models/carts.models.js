@@ -6,12 +6,12 @@ const cartsCollection = 'carts'
 
 const cartsSchema = new Schema({
     productId: {
-        type: string
+        type: String
     },
     quantity: {
-        type: number,
+        type: Number,
         required: true    
     }
 })
 
-// export const cartsModel = model(cartsCollection, cartsSchema)
+module.exports = model(cartsCollection, cartsSchema);
