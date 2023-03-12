@@ -41,6 +41,8 @@ const serverSockets = new Server(serverHttp);
 const productManager = require("./dao/productManagerFS.js");
 const product = new productManager("./productos.json")
 
+const messages = []
+
 serverSockets.on('connection', (socket) => {
     console.log(`Se han conectado, socket id ${socket.id}`)
     // product.getProducts().then(products => {
@@ -48,7 +50,12 @@ serverSockets.on('connection', (socket) => {
     // })
 
     socket.on('message', (message) => {
-        console.log(`${message.emisor} dice ${message.mensaje}`);
+        console.log(`${message.user} dice ${message.message}`);
+        
+        const messageManagerDB = require("./dao/messageManagerDB.js");
+        const newMessage = new messageManagerDB
+
+        newMessage.addMessage(message)
 
         serverSockets.emit('newMessage', message)
 
@@ -66,5 +73,7 @@ const conectar = async()=>{
 }
 
 conectar()
+
+exports.messages = messages
 
 serverHttp.on('error', (error) => console.log(error))

@@ -18,13 +18,15 @@ let nombre = prompt("Ingrese su nombre:")
 let messageText = document.getElementById('messageText')
 let messageContainer = document.getElementById('messageContainer')
 
+messageText.focus();
+
 messageText.addEventListener('keydown', (evento) => {
     console.log(evento.key)
     if (evento.key == "Enter") {
         if (evento.target.value.trim() != '') {
             socket.emit('message', {
-                emisor: nombre,
-                mensaje: evento.target.value
+                user: nombre,
+                message: evento.target.value
             })
             console.log(evento.target.value)
             messageText.value = '';
@@ -34,5 +36,7 @@ messageText.addEventListener('keydown', (evento) => {
 })
 
 socket.on('newMessage',(message)=>{
-    messageContainer.innerHTML+=`<br><strong>${message.emisor}</strong> dice <i>${message.mensaje}</i>`
+    messageContainer.innerHTML+=`<br><strong>${message.user}</strong> dice <i>${message.message}</i>`
+
+    messageContainer.scrollTop=messageContainer.scrollHeight
 })
