@@ -1,4 +1,4 @@
-const productsModel = require('./models/products.models.js')
+import productsModel from './models/products.models.js';
 
 class productManagerDB {
     
@@ -57,4 +57,4 @@ class productManagerDB {
 
 }
 
-module.exports = productManagerDB;
+export default productManagerDB;

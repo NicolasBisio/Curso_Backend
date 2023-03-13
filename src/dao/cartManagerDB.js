@@ -1,4 +1,4 @@
-const cartsModel = require('./models/carts.models.js')
+import cartsModel from './models/carts.models.js';
 
 class cartManagerDB {
 
@@ -57,4 +57,4 @@ class cartManagerDB {
 
 }
 
-module.exports = cartManagerDB;
+export default cartManagerDB;

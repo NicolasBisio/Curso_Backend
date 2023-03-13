@@ -1,7 +1,7 @@
-const Router = require('express').Router;
+import { Router } from 'express';
 const router = Router();
 
-const productManager = require('../dao/productManagerFS.js');
+import productManager from '../dao/productManagerFS.js';
 const product = new productManager('./src/productos.json')
 
 router.get('/products', async (req, res) => {
@@ -18,4 +18,4 @@ router.get('/chat', async (req, res) => {
     res.status(200).render('chat')
 })
 
-module.exports = router;
+export default router;

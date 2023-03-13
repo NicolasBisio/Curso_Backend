@@ -1,4 +1,4 @@
-const messagesModel = require('./models/messages.models.js')
+const messagesModel = require('./models/messages.models.js').default
 
 class messageManagerDB {
     async addMessage(message, req, res) {

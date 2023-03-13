@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+import { existsSync, promises } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
 class cartManager {
     constructor(archivo) {
@@ -7,8 +7,8 @@ class cartManager {
     }
 
     async getCarts() {
-        if (fs.existsSync(this.path)) {
-            let cartsTxt = await fs.promises.readFile(this.path, "utf-8");
+        if (existsSync(this.path)) {
+            let cartsTxt = await promises.readFile(this.path, "utf-8");
             return JSON.parse(cartsTxt);
         } else {
             return []
@@ -22,14 +22,14 @@ class cartManager {
             products: []
         }
         carts.push(newCart)
-        await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
+        await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
         return carts
     }
 
     async getCartById(id) {
-        if (fs.existsSync(this.path)) {
+        if (existsSync(this.path)) {
 
-            let carts = await fs.promises.readFile(this.path, "utf-8")
+            let carts = await promises.readFile(this.path, "utf-8")
             carts = JSON.parse(carts)
 
             const cartById = carts.find(element => element.id == id);
@@ -55,11 +55,11 @@ class cartManager {
             let indexProd = await carts[indexCart].products.findIndex(element => element.id == idProd)
             if (indexProd === -1) {
                 await carts[indexCart].products.push(newProduct)
-                await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
                 return carts
             } else {
                 carts[indexCart].products[indexProd].quantity++
-                await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
                 return carts
             }
         } else {
@@ -68,4 +68,4 @@ class cartManager {
     }
 }
 
-module.exports = cartManager;
+export default cartManager;

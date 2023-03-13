@@ -1,8 +1,8 @@
-const Router = require("express").Router;
+import { Router } from "express";
 const router = Router();
 
 //Llamar al controlador de MongoDB
-const cartManagerDB = require("../dao/cartManagerDB.js");
+import cartManagerDB from "../dao/cartManagerDB.js";
 const cart = new cartManagerDB
 
 router.get('/', cart.getCarts)
@@ -58,4 +58,4 @@ router.delete('/:pid', cart.deleteCart)
 //     })
 // })
 
-module.exports = router;
+export default router;

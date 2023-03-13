@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+import { promises, existsSync } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
 class productManager {
     constructor(archivo) {
@@ -20,13 +20,13 @@ class productManager {
         }
 
         products.push(newProduct)
-        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 3))
+        await promises.writeFile(this.path, JSON.stringify(products, null, 3))
 
     }
 
     async getProducts() {
-        if (fs.existsSync(this.path)) {
-            let productosTxt = await fs.promises.readFile(this.path, "utf-8");
+        if (existsSync(this.path)) {
+            let productosTxt = await promises.readFile(this.path, "utf-8");
             return JSON.parse(productosTxt);
         } else {
             return [];
@@ -35,9 +35,9 @@ class productManager {
 
     async getProductById(id) {
         console.log(this.path)
-        if (fs.existsSync(this.path)) {
+        if (existsSync(this.path)) {
 
-            let products = await fs.promises.readFile(this.path, "utf-8")
+            let products = await promises.readFile(this.path, "utf-8")
             products = JSON.parse(products)
 
             const productById = products.find(element => element.id == id);
@@ -52,9 +52,9 @@ class productManager {
     }
 
     async updateProduct(title, description, price, thumbnail, code, stock, id) {
-        if (fs.existsSync(this.path)) {
+        if (existsSync(this.path)) {
 
-            let products = await fs.promises.readFile(this.path, "utf-8")
+            let products = await promises.readFile(this.path, "utf-8")
             products = JSON.parse(products)
 
             const position = products.findIndex(element => element.id == id);
@@ -70,7 +70,7 @@ class productManager {
                 }
                 products[position].id = keepId
 
-                await fs.promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
                 return (`El producto ${products[position].title} con el ID ${products[position].id} fue actualizado correctamente en ${this.path}.`)
 
             } else {
@@ -83,9 +83,9 @@ class productManager {
     }
 
     async deleteProduct(id) {
-        if (fs.existsSync(this.path)) {
+        if (existsSync(this.path)) {
 
-            let products = await fs.promises.readFile(this.path, "utf-8");
+            let products = await promises.readFile(this.path, "utf-8");
             products = JSON.parse(products);
 
             const position = products.findIndex(element => element.id == id);
@@ -94,7 +94,7 @@ class productManager {
                 let productosFiltrados = products.filter(element => element.id != id)
                 console.log(`Se ha eliminado el producto con posición ${position} en ${this.path}`)
                 products = productosFiltrados
-                await fs.promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
                 return (`El producto fue eliminado exitosamente.`)
             } else {
                 console.error("Not Found 1")
@@ -106,4 +106,4 @@ class productManager {
     }
 }
 
-module.exports = productManager;
+export default productManager;

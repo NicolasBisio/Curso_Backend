@@ -1,8 +1,8 @@
-const Router = require("express").Router;
+import { Router } from "express";
 const router = Router();
 
 //Llamar al controlador de MongoDB
-const productManagerDB = require("../dao/productManagerDB.js");
+import productManagerDB from "../dao/productManagerDB.js";
 const product = new productManagerDB
 
 router.get('/', product.getProducts)
@@ -125,4 +125,4 @@ router.delete('/:pid', product.deleteProduct)
 // })
 
 
-module.exports = router;
+export default router;

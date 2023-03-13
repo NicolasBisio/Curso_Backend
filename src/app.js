@@ -1,8 +1,9 @@
-const path = require('path');
-const express = require('express')
-const engine = require('express-handlebars').engine
-const Server = require('socket.io').Server;
-const { default: mongoose } = require('mongoose');
+import __dirname from './utils/utils.js';
+import path from 'path';
+import express, { json, urlencoded } from 'express';
+import { engine } from 'express-handlebars';
+import { Server } from 'socket.io';
+import { default as mongoose } from 'mongoose';
 
 const PORT = 3000
 
@@ -12,12 +13,12 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, './views'));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(json())
+app.use(urlencoded({ extended: true }))
 
-const viewsRouter = require('./routes/views.router')
-const productsRouter = require('./routes/products.router')
-const cartsRouter = require('./routes/carts.router')
+import viewsRouter from './routes/views.router.js';
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 
 app.use('/', viewsRouter)
 app.use('/api/products', productsRouter)
@@ -38,7 +39,7 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-const productManager = require("./dao/productManagerFS.js");
+import productManager from "./dao/productManagerFS.js";
 const product = new productManager("./productos.json")
 
 const messages = []
@@ -74,6 +75,6 @@ const conectar = async()=>{
 
 conectar()
 
-exports.messages = messages
+export default messages;
 
-serverHttp.on('error', (error) => console.log(error))
+serverHttp.on('error', (error) => console.log(error));
