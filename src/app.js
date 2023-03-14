@@ -16,7 +16,8 @@ app.engine('handlebars', engine({
     },
 }));
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, './views'));
+// app.set('views', path.join(__dirname, './views'));
+app.set('views', './src/views')
 
 app.use(json())
 app.use(urlencoded({ extended: true }))

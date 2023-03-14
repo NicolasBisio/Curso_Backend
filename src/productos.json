@@ -1,14 +1,5 @@
 [
    {
-      "title": "3. Tercer producto de prueba",
-      "description": "Este es un tercer producto de prueba",
-      "price": 200,
-      "thumbnail": "Sin imagen",
-      "code": "345",
-      "stock": "15",
-      "id": 3
-   },
-   {
       "title": "4. Cuarto producto de prueba",
       "description": "Este es un cuarto producto de prueba",
       "price": 200,
@@ -25,5 +16,14 @@
       "code": "567",
       "stock": "15",
       "id": 5
+   },
+   {
+      "title": "dfsdfs",
+      "description": "gdfgdfgd",
+      "price": "200",
+      "thumbnail": "adsdafas",
+      "code": "lodaos",
+      "stock": "15",
+      "id": "9ea2b7d9-0a02-422c-869d-896920d2f2d8"
    }
 ]

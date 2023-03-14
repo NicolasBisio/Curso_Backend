@@ -4,10 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 export default class ProductManager {
     constructor(archivo) {
         this.path = archivo;
-    }
 
+        this.getProducts=this.getProducts.bind(this);
+        this.addProduct=this.addProduct.bind(this);
+        this.updateProduct=this.updateProduct.bind(this);
+        this.deleteProduct=this.deleteProduct.bind(this);
+       }
+ 
     async addProduct(req, res) {
-        const products = await this.getProducts();
+        let products = await promises.readFile(this.path, "utf-8");
+        products = JSON.parse(products);
 
         let newProduct = req.body
         let repeatedProduct = products.find(element => element.code === newProduct.code)
@@ -30,7 +36,11 @@ export default class ProductManager {
                     id: uuidv4()
                 }
                 products.push(newProduct)
-                await promises.writeFile("./src/productos.json", JSON.stringify(products, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                res.setHeader("Content-Type", "aplication/json")
+                res.status(200).json({
+                    products
+                })
                 // await this.getProducts().then(products => {
                 //     res.setHeader("Content-Type", "aplication/json")
                 //     res.status(201).json({
@@ -47,11 +57,10 @@ export default class ProductManager {
         }
     }
 
-
     async getProducts(req, res) {
-        if (existsSync("./src/productos.json")) {
-            let limit = req.query.limit;
-            let productosTxt = await promises.readFile("./src/productos.json", "utf-8");
+        if (existsSync(this.path)) {
+        let limit = req.query.limit;
+            let productosTxt = await promises.readFile(this.path, "utf-8");
             let products = JSON.parse(productosTxt);
 
             if (limit) {
@@ -66,7 +75,6 @@ export default class ProductManager {
             return []
         }
     }
-
 
     // async getProductById(id) {
     //     if (existsSync(this.path)) {
@@ -86,14 +94,14 @@ export default class ProductManager {
     // }
 
     async updateProduct(req, res) {
-        if (existsSync("./src/productos.json")) {
+        if (existsSync(this.path)) {
 
             let newProduct = req.body
             let id = req.params.pid
 
             console.log(newProduct)
 
-            let products = await promises.readFile("./src/productos.json", "utf-8")
+            let products = await promises.readFile(this.path, "utf-8")
             products = JSON.parse(products)
 
             if (newProduct.title && newProduct.description && newProduct.price && newProduct.thumbnail && newProduct.code && newProduct.stock) {
@@ -111,7 +119,11 @@ export default class ProductManager {
                     }
                     products[position].id = keepId
 
-                    await promises.writeFile("./src/productos.json", JSON.stringify(products, null, 3))
+                    await promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                    res.setHeader("Content-Type", "aplication/json")
+                    res.status(200).json({
+                        products
+                    })
                     return (`El producto ${products[position].title} con el ID ${products[position].id} fue actualizado correctamente.`)
                 } else {
                     res.setHeader("Content-Type", "aplication/json")
@@ -134,9 +146,9 @@ export default class ProductManager {
     }
 
     async deleteProduct(req, res) {
-        if (existsSync("./src/productos.json")) {
+        if (existsSync(this.path)) {
             let id = req.params.pid
-            let products = await promises.readFile("./src/productos.json", "utf-8");
+            let products = await promises.readFile(this.path, "utf-8");
             products = JSON.parse(products);
 
             const position = products.findIndex(element => element.id == id);
@@ -145,7 +157,7 @@ export default class ProductManager {
                 let productosFiltrados = products.filter(element => element.id != id)
                 console.log(`Se ha eliminado el producto con posición ${position}`)
                 products = productosFiltrados
-                await promises.writeFile("./src/productos.json", JSON.stringify(products, null, 3))
+                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
                     products
@@ -160,4 +172,3 @@ export default class ProductManager {
         }
     }
 }
-
