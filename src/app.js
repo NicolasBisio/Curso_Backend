@@ -9,7 +9,12 @@ const PORT = 3000
 
 const app = express()
 
-app.engine('handlebars', engine());
+app.engine('handlebars', engine({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    },
+}));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, './views'));
 
@@ -39,8 +44,8 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-import productManager from "./dao/productManagerFS.js";
-const product = new productManager("./productos.json")
+// import ProductManager from "./dao/productManagerFS.js";
+// const product = new ProductManager("./productos.json")
 
 const messages = []
 
@@ -52,7 +57,7 @@ serverSockets.on('connection', (socket) => {
 
     socket.on('message', (message) => {
         console.log(`${message.user} dice ${message.message}`);
-        
+
         const messageManagerDB = require("./dao/messageManagerDB.js");
         const newMessage = new messageManagerDB
 
@@ -64,7 +69,7 @@ serverSockets.on('connection', (socket) => {
 
 })
 
-const conectar = async()=>{
+const conectar = async () => {
     try {
         await mongoose.connect('mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce')
         console.log('Conexión a BD establecida')

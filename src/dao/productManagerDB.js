@@ -1,6 +1,6 @@
 import productsModel from './models/products.models.js';
 
-class productManagerDB {
+export default class ProductManagerDB {
     
     async getProducts(req, res) {
         let products;
@@ -56,5 +56,3 @@ class productManagerDB {
     }
 
 }
-
-export default productManagerDB;

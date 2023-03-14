@@ -1,4 +1,4 @@
-const messagesModel = require('./models/messages.models.js').default
+import messagesModel from './models/messages.models.js';
 
 class messageManagerDB {
     async addMessage(message, req, res) {
@@ -8,4 +8,4 @@ class messageManagerDB {
     }
 }
 
-module.exports = messageManagerDB;
+export default messageManagerDB;
