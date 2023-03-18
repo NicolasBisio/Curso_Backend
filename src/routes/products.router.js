@@ -1,9 +1,10 @@
 import { Router } from "express";
+
 const router = Router();
 
 //Llamar al controlador de MongoDB
-// import ProductManagerDB from "../dao/productManagerDB.js";
-// const product = new ProductManagerDB
+import ProductManagerDB from "../dao/productManagerDB.js";
+const product = new ProductManagerDB
 
 // router.get('/', product.getProducts)
 
@@ -15,12 +16,16 @@ const router = Router();
 
 
 // Llamando al controlador de FileSystem
-import ProductManager from "../dao/productManagerFS.js";
-const product = new ProductManager("./src/productos.json")
+// import ProductManager from "../dao/productManagerFS.js";
+// const product = new ProductManager("./src/productos.json")
 
 router.get('/', product.getProducts)
 
+//router.get('/:pid', product.getProductById)
+
 router.post("/", product.addProduct)
+
+router.post("/massive", product.addProductsMassive)
 
 router.put("/:pid", product.updateProduct)
 

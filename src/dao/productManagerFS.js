@@ -5,12 +5,13 @@ export default class ProductManager {
     constructor(archivo) {
         this.path = archivo;
 
-        this.getProducts=this.getProducts.bind(this);
-        this.addProduct=this.addProduct.bind(this);
-        this.updateProduct=this.updateProduct.bind(this);
-        this.deleteProduct=this.deleteProduct.bind(this);
-       }
- 
+        this.getProducts = this.getProducts.bind(this);
+        this.getProductById = this.getProductById.bind(this);
+        this.addProduct = this.addProduct.bind(this);
+        this.updateProduct = this.updateProduct.bind(this);
+        this.deleteProduct = this.deleteProduct.bind(this);
+    }
+
     async addProduct(req, res) {
         let products = await promises.readFile(this.path, "utf-8");
         products = JSON.parse(products);
@@ -41,12 +42,6 @@ export default class ProductManager {
                 res.status(200).json({
                     products
                 })
-                // await this.getProducts().then(products => {
-                //     res.setHeader("Content-Type", "aplication/json")
-                //     res.status(201).json({
-                //         products
-                //     })
-                // })
             }
         } else {
             console.log("Debe completar todos los campos")
@@ -59,7 +54,7 @@ export default class ProductManager {
 
     async getProducts(req, res) {
         if (existsSync(this.path)) {
-        let limit = req.query.limit;
+            let limit = req.query.limit;
             let productosTxt = await promises.readFile(this.path, "utf-8");
             let products = JSON.parse(productosTxt);
 
@@ -76,22 +71,28 @@ export default class ProductManager {
         }
     }
 
-    // async getProductById(id) {
-    //     if (existsSync(this.path)) {
+    async getProductById(req, res) {
+        if (existsSync(this.path)) {
+            let id = req.params.pid
 
-    //         let products = await promises.readFile(this.path, "utf-8")
-    //         products = JSON.parse(products)
+            let products = await promises.readFile(this.path, "utf-8")
+            products = JSON.parse(products)
 
-    //         const productById = products.find(element => element.id == id);
-    //         if (productById) {
-    //             return productById
-    //         } else {
-    //             console.error("Not Found 1")
-    //         }
-    //     } else {
-    //         console.error("Not Found 2")
-    //     }
-    // }
+            const productById = products.find(element => element.id == id);
+            if (productById) {
+                res.setHeader("Content-Type", "aplication/json")
+                res.status(200).send(productById)
+            } else {
+                console.error("Not Found 1")
+                res.setHeader("Content-Type", "aplication/json")
+                res.status(400).json({
+                    message: `No existe el producto con Id '${req.params.pid}' en ${this.path}`
+                })
+            }
+        } else {
+            console.error("Not Found 2")
+        }
+    }
 
     async updateProduct(req, res) {
         if (existsSync(this.path)) {

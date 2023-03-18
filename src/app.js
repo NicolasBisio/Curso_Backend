@@ -45,16 +45,16 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-// import ProductManager from "./dao/productManagerFS.js";
-// const product = new ProductManager("./productos.json")
+import ProductManager from "./dao/productManagerFS.js";
+const product = new ProductManager("./productos.json")
 
 const messages = []
 
 serverSockets.on('connection', (socket) => {
     console.log(`Se han conectado, socket id ${socket.id}`)
-    // product.getProducts().then(products => {
-    //     socket.emit('getProducts', { products })
-    // })
+    product.getProducts().then(products => {
+        socket.emit('getProducts', { products })
+    })
 
     socket.on('message', (message) => {
         console.log(`${message.user} dice ${message.message}`);

@@ -26,7 +26,19 @@
          {
             "id": "160",
             "quantity": 5
+         },
+         {
+            "id": "3",
+            "quantity": 2
          }
       ]
+   },
+   {
+      "id": "86b74dba-bea6-4ea2-8a62-09362654cd47",
+      "products": []
+   },
+   {
+      "id": "fcb115af-1bb3-4e83-832e-19848dfaaacc",
+      "products": []
    }
 ]
