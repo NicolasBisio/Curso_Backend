@@ -73,10 +73,13 @@ export default class ProductManagerDB {
 
         }
 
-        await productsModel.deleteMany({});
         await productsModel.insertMany(productsMassive)
 
-        console.log(`Base de datos usuariosBig creada correctamente...!!!`);
+        console.log(`Productos cargados exitosamente.`);
+        res.setHeader('Content-Type', 'application/json');
+        res.status(201).json({
+            message: `Productos cargados exitosamente.`
+        })
 
         process.exit();
 

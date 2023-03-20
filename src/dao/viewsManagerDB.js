@@ -1,4 +1,11 @@
-import {productsModel} from './models/products.models.js';
+import { productsModel } from './models/products.models.js';
+import { cartsModel } from './models/carts.models.js';
+
+import ProductManagerDB from "./productManagerDB.js";
+const product = new ProductManagerDB
+
+import cartManagerDB from "../dao/cartManagerDB.js";
+const cart = new cartManagerDB
 
 export default class ViewsManagerDB {
 
@@ -11,14 +18,14 @@ export default class ViewsManagerDB {
         paginaActual = req.query.pagina ? req.query.pagina : paginaActual;
         limit = req.query.limit ? req.query.limit : limit;
 
-        if (req.query.sort == "asc"){
+        if (req.query.sort == "asc") {
             sort = 1
         } if (req.query.sort == "desc") {
             sort = -1
         }
 
         try {
-            products = await productsModel.paginate({}, { page: paginaActual, limit: limit, sort: { price: sort }})
+            products = await productsModel.paginate({}, { page: paginaActual, limit: limit, sort: { price: sort } })
             console.log(products)
 
         } catch (error) {
@@ -36,6 +43,35 @@ export default class ViewsManagerDB {
             totalPages, hasPrevPage, hasNextPage, prevPage, nextPage
         })
 
+    }
+
+    async getChat(req, res) {
+        res.status(200).render('chat')
+    }
+
+    async getProductsRealTime(req, res) {
+        let products = await product.getProducts();
+        res.status(200).render('realTimeProducts', {
+            products
+        })
+    }
+
+    async getCartById(req, res) {
+        let id = req.params.cid;
+        let cartById = await cartsModel.find({ _id: id }).populate('products.productId')
+        console.log({ cartById })
+
+        if (cartById) {
+            res.setHeader('Content-Type', 'text/html');
+            res.status(200).render('carts', {
+                id, cartById
+            })
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(400).json({
+                mensaje: `El carrito con el id ${id} no fue encontrado.`
+            })
+        }
     }
 
 }

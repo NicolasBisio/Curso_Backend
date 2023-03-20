@@ -1,21 +1,15 @@
 import { Router } from 'express';
 const router = Router();
 
-import ProductManagerDB from "../dao/productManagerDB.js";
-const product = new ProductManagerDB
-
 import ViewsManagerDB from "../dao/viewsManagerDB.js";
 const view = new ViewsManagerDB
 
 router.get('/products', view.getProducts)
 
-router.get('/realtimeproducts', async (req, res) => {
-    let products = await product.getProducts();
-    res.status(200).render('realTimeProducts')
-})
+router.get('/cart/:cid', view.getCartById)
 
-router.get('/chat', async (req, res) => {
-    res.status(200).render('chat')
-})
+router.get('/realtimeproducts', view.getProductsRealTime)
+
+router.get('/chat', view.getChat)
 
 export default router;
