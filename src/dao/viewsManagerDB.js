@@ -1,4 +1,4 @@
-import productsModel from './models/products.models.js';
+import {productsModel} from './models/products.models.js';
 
 export default class ViewsManagerDB {
 
@@ -10,7 +10,7 @@ export default class ViewsManagerDB {
 
         paginaActual = req.query.pagina ? req.query.pagina : paginaActual;
         limit = req.query.limit ? req.query.limit : limit;
-        // req.query.sort = 'asc' ? sort = 1 : sort = -1
+
         if (req.query.sort == "asc"){
             sort = 1
         } if (req.query.sort == "desc") {

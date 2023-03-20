@@ -1,4 +1,4 @@
-import productsModel from './models/products.models.js';
+import {productsModel} from './models/products.models.js';
 
 export default class ProductManagerDB {
 
@@ -13,16 +13,28 @@ export default class ProductManagerDB {
             })
         }
 
-        res.setHeader('Content-Type', 'text/html');
-        res.status(200).render('products', {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
             products
         })
 
     }
 
+    async getProductById(req, res) {
+        let id = req.params.pid;
+
+        let productById = await productsModel.find({ _id: id })
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
+            productById
+        })
+    }
+
     async addProduct(req, res) {
         let productToCreate = req.body;
 
+        await productsModel.deleteMany({})
         let newProduct = await productsModel.create(productToCreate);
 
         res.setHeader('Content-Type', 'application/json');

@@ -6,16 +6,18 @@ const cartsCollection = 'carts'
 const cartsSchema = new Schema(
     {
         products: {
-            type: Array,
-            items: {
-                productId: {
-                    type: String
-                },
-                quantity: {
-                    type: Number
-                    //required: true
+            type: [
+                {
+                    productId: {
+                        type: Schema.Types.ObjectId,
+                        ref: 'products'
+                    },
+                    quantity: {
+                        type: Number
+                        //required: true
+                    }
                 }
-            }
+            ]
         }
     }
 
@@ -23,4 +25,4 @@ const cartsSchema = new Schema(
 
 cartsSchema.plugin(mongoosePaginate)
 
-export default model(cartsCollection, cartsSchema);
+export const cartsModel = model(cartsCollection, cartsSchema);

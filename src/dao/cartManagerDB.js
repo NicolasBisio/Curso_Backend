@@ -1,4 +1,4 @@
-import cartsModel from './models/carts.models.js';
+import { cartsModel } from './models/carts.models.js';
 
 export default class cartManagerDB {
 
@@ -22,29 +22,39 @@ export default class cartManagerDB {
 
     async getCartById(req, res) {
         let id = req.params.cid;
-        let cartById;
-        try {
-            cartById = await cartsModel.find({ _id: id })
-        } catch (error) {
+        let cartById = await cartsModel.find({ _id: id }).populate('products.productId')
+        // console.log(JSON.stringify(cartById, null, 3))
+        console.log({ cartById })
+
+        if (cartById) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                cartById
+            })
+        } else {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({
                 mensaje: `El carrito con el id ${id} no fue encontrado.`
             })
         }
-
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            cartById
-        })
-
     }
 
     async addCart(req, res) {
-        let cartToCreate = req.body;
+        let cartToCreate = {
+            products: [
+                {
+                    productId: req.body.productId,
+                    quantity: req.body.quantity
+                },
+            ]
+        }
 
+        console.log(cartToCreate)
+
+        await cartsModel.deleteMany({})
         let newCart = await cartsModel.create(cartToCreate);
         console.log(newCart)
-        
+
         let carts = await cartsModel.find()
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
@@ -141,7 +151,7 @@ export default class cartManagerDB {
 
         try {
             cartToDelete = await cartsModel.deleteOne({ _id: id });
-            console.log('Carrito eliminado: ' + cartToDelete)
+            console.dir('Carrito eliminado: ' + cartToDelete)
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({
