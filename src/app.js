@@ -4,6 +4,13 @@ import express, { json, urlencoded } from 'express';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import { default as mongoose } from 'mongoose';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+
+import viewsRouter from './routes/views.router.js';
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
+import sessionsRouter from './routes/sessions.router.js';
 
 const PORT = 3000
 
@@ -22,13 +29,20 @@ app.set('views', './src/views')
 app.use(json())
 app.use(urlencoded({ extended: true }))
 
-import viewsRouter from './routes/views.router.js';
-import productsRouter from './routes/products.router.js';
-import cartsRouter from './routes/carts.router.js';
+app.use(session({
+    secret: 'secretCode',
+    resave: true,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce',
+        ttl:60
+    })
+}))
 
 app.use('/', viewsRouter)
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
+app.use('/api/sessions', sessionsRouter)
 
 app.use(express.static(path.join(__dirname, './public')));
 
