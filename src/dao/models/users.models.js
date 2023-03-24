@@ -7,7 +7,8 @@ const usersSchema = new Schema({
     lastName: String,
     mail: { type: String, unique: true },
     password: String,
-    age: Number
+    age: Number,
+    rol: String
 });
 
 export const usersModel = model(usersCollection, usersSchema);

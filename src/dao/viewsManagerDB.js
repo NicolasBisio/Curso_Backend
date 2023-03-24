@@ -74,4 +74,22 @@ export default class ViewsManagerDB {
         }
     }
 
+    getHome(req, res) {
+        res.setHeader('Content-Type', 'text/html');
+        res.status(200).render('home', {
+            fullName: req.session.user.name + ' ' + req.session.user.lastName,
+            rol: req.session.user.rol
+        })
+    }
+
+    signUp(req, res) {
+        res.setHeader('Content-Type', 'text/html');
+        res.status(200).render('signUp')
+    }
+
+    login(req, res) {
+        res.setHeader('Content-Type', 'text/html');
+        res.status(200).render('login')
+    }
+
 }

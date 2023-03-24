@@ -14,10 +14,15 @@ router.post('/signUp', async (req, res) => {
 
     if (currentUser) return res.sendStatus(400);
 
+    let rol = "user"
+    if (mail == "adminCoder@coder.com" || password == "adminCod3r123") {
+        rol = "admin"
+    }
+
     usersModel.create({
         name, lastName, mail,
         password: crypto.createHash('sha256', 'palabraSecreta').update(password).digest('base64'),
-        age
+        age, rol
     })
 
     res.redirect('/login');
@@ -28,22 +33,25 @@ router.post('/login', async (req, res) => {
 
     let { mail, password } = req.body;
 
-    console.log(mail + password)
-
     if (!mail || !password) return res.sendStatus(400)
 
     let user = await usersModel.findOne({ mail: mail, password: crypto.createHash('sha256', 'palabraSecreta').update(password).digest('base64') })
 
+    console.log(user)
     if (!user) return res.sendStatus(401)
 
     req.session.user = {
         name: user.name,
         lastName: user.lastName,
         mail,
-        age: user.age
+        age: user.age,
+        rol: user.rol
     }
 
-    res.redirect('/');
+    res.render('home', {
+        fullName: user.name + ' ' + user.lastName,
+        rol: user.rol
+    })
 
 })
 
