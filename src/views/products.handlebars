@@ -1,4 +1,12 @@
-<h1>Listado de productos</h1>
+<h1>Galería</h1>
+
+<p>¡Bienvenido/a {{fullName}}!</p>
+<p>Rol del usuario: {{rol}}</p>
+
+<br>
+<hr>
+
+<h2>Listado de productos</h2>
 
 <ul>
     {{#each products}}
@@ -16,3 +24,7 @@
     <a href="/products/?pagina={{nextPage}}">Página Siguiente</a>
 {{/if}}
 <a href="/products/?pagina={{totalPages}}">Última página</a>
+
+<br>
+<br>
+<a href="/api/sessions/logout">Logout</a>

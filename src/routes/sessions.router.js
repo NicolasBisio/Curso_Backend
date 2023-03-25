@@ -48,10 +48,7 @@ router.post('/login', async (req, res) => {
         rol: user.rol
     }
 
-    res.render('home', {
-        fullName: user.name + ' ' + user.lastName,
-        rol: user.rol
-    })
+    res.redirect('/products');
 
 })
 

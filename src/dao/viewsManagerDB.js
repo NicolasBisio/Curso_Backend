@@ -40,7 +40,9 @@ export default class ViewsManagerDB {
         res.setHeader('Content-Type', 'text/html');
         res.status(200).render('products', {
             products: products.docs,
-            totalPages, hasPrevPage, hasNextPage, prevPage, nextPage
+            totalPages, hasPrevPage, hasNextPage, prevPage, nextPage,
+            fullName: req.session.user.name + ' ' + req.session.user.lastName,
+            rol: req.session.user.rol
         })
 
     }
