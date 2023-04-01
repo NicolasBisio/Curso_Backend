@@ -22,9 +22,8 @@ export default class cartManagerDB {
 
     async getCartById(req, res) {
         let id = req.params.cid;
-        let cartById = await cartsModel.find({ _id: id }).populate('products.productId')
-        // console.log(JSON.stringify(cartById, null, 3))
-        console.log({ cartById })
+        let cartById = await cartsModel.find({ _id: id }).populate('products.productId') // probar, y probar con findById y con findOne
+        console.log(JSON.stringify({ cartById }, null, 3))
 
         if (cartById) {
             res.setHeader('Content-Type', 'application/json');
@@ -41,24 +40,14 @@ export default class cartManagerDB {
 
     async addCart(req, res) {
         let cartToCreate = {
-            products: [
-                {
-                    productId: req.body.productId,
-                    quantity: req.body.quantity
-                },
-            ]
+            products: []
         }
 
-        console.log(cartToCreate)
-
-        await cartsModel.deleteMany({})
         let newCart = await cartsModel.create(cartToCreate);
-        console.log(newCart)
 
-        let carts = await cartsModel.find()
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
-            carts
+            newCart
         })
 
     }
@@ -68,21 +57,29 @@ export default class cartManagerDB {
         let idProd = req.params.pid
 
         let cart = await cartsModel.findById(idCart)
+
         if (cart) {
             let indexProd = cart.products.findIndex((item) => item.productId == idProd)
             if (indexProd !== -1) {
-                await cartsModel.updateOne({ _id: idCart, "products.productId": idProd }, { $inc: { "products.$.quantity": 1 } });
-                let carts = await cartsModel.find()
+                cart.products[indexProd].quantity++;
+
+                let resultado = await cartsModel.updateOne({ _id: idCart }, cart);
+                console.log(resultado)
+                let updatedCart = await cartsModel.findOne({ _id: idCart })
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
-                    carts
+                    updatedCart
                 })
             } else {
-                await cartsModel.updateOne({ _id: idCart }, { $push: { products: { productId: idProd, quantity: 1 } } });
-                let carts = await cartsModel.find()
+                cart.products.push({
+                    productId: idProd,
+                    quantity: 1
+                })
+                await cartsModel.updateOne({ _id: idCart }, cart)
+                let newCart = await cartsModel.findOne({ _id: idCart })
                 res.setHeader('Content-Type', 'application/json');
                 res.status(201).json({
-                    carts
+                    newCart
                 })
             }
         } else {
@@ -94,22 +91,25 @@ export default class cartManagerDB {
     }
 
     async updateCart(req, res) {
-        let id = req.params.cid;
+        let idCart = req.params.cid;
         let cartToUpdate = req.body;
+
+        // agregar validaciones??
+
         try {
-            let newCart = await cartsModel.updateOne({ _id: id }, cartToUpdate)
-            console.log(newCart)
+            let updatedCart = await cartsModel.updateOne({ _id: idCart }, cartToUpdate)
+            console.log(updatedCart)
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({
-                mensaje: `El carrito con el id ${id} no fue encontrado.`
+                mensaje: `El carrito con el id ${idCart} no fue encontrado.`
             })
         }
 
-        let carts = await cartsModel.find()
+        let updatedCart = await cartsModel.findOne({ _id: idCart })
         res.setHeader('Content-Type', 'application/json');
-        res.status(201).json({
-            carts
+        res.status(200).json({
+            updatedCart
         })
 
     }
@@ -126,10 +126,10 @@ export default class cartManagerDB {
                 product.quantity = newQuantity;
                 await cartsModel.updateOne({ _id: idCart }, { $set: { products: cart.products } });
 
-                let carts = await cartsModel.find()
+                let updatedCart = await cartsModel.findOne({ _id: idCart })
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
-                    carts
+                    updatedCart
                 })
             } else {
                 res.setHeader("Content-Type", "aplication/json")
@@ -146,16 +146,16 @@ export default class cartManagerDB {
     }
 
     async deleteCart(req, res) {
-        let id = req.params.cid;
+        let idCart = req.params.cid;
         let cartToDelete;
 
         try {
-            cartToDelete = await cartsModel.deleteOne({ _id: id });
+            cartToDelete = await cartsModel.deleteOne({ _id: idCart });
             console.dir('Carrito eliminado: ' + cartToDelete)
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({
-                mensaje: `El carrito con el id ${id} no fue encontrado.`
+                mensaje: `El carrito con el id ${idCart} no fue encontrado.`
             })
         }
 
@@ -176,10 +176,10 @@ export default class cartManagerDB {
             let indexProd = cart.products.findIndex((item) => item.productId == idProd)
             if (indexProd !== -1) {
                 await cartsModel.deleteOne({ "products.productId": idProd });
-                let carts = await cartsModel.find()
+                let updatedCart = await cartsModel.findOne({ _id: idCart })
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
-                    carts
+                    updatedCart
                 })
             } else {
                 res.setHeader("Content-Type", "aplication/json")

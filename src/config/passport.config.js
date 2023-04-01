@@ -1,0 +1,107 @@
+import passport from 'passport';
+import local from 'passport-local';
+import github from 'passport-github2';
+import { usersModel } from '../dao/models/users.models.js';
+import { createHash, isValidPassword } from "../utils/utils.js"
+
+export const inicializaEstrategias = () => {
+
+    passport.use('github', new github.Strategy({
+        clientID: 'Iv1.eadd6dee48feccf4',
+        clientSecret: '5115b80e42bc3a3b2c85d0b215e00221170ca56a',
+        callbackURL: 'http://localhost:3000/api/sessions/callbackGithub'
+    }, async (accessToken, refreshToken, profile, done) => {
+
+        try {
+            console.log(profile);
+
+            let nombre = profile._json.name;
+            let email = profile._json.email;
+
+            let usuario = await usersModel.findOne({ email: email });
+            if (!usuario) {
+                let usuarioNuevo = {
+                    nombre,
+                    email,
+                    github: true,
+                    githubProfile: profile._json
+                }
+                usuario = await usersModel.create(usuarioNuevo);
+            } else {
+                let actualizaUsuario = {
+                    github: true,
+                    githubProfile: profile._json
+                }
+
+                await usersModel.updateOne({ email: email }, actualizaUsuario);
+            }
+
+            done(null, usuario)
+
+        } catch (error) {
+            done(error)
+        }
+
+
+    }))
+
+    passport.use('signUp', new local.Strategy({ usernameField: 'email', passReqToCallback: true }, async (req, username, password, done) => {
+
+        try {
+
+            let { name, lastName, age } = req.body;
+
+            if (!username || !password) return done(null, false)
+
+            let user = await usersModel.findOne({ email: username })
+
+            if (user) return done(null, false);
+
+            let rol = "user"
+            if (username == "adminCoder@coder.com" || password == "adminCod3r123") {
+                rol = "admin"
+            }
+
+            let newUser = await usersModel.create({
+                name, lastName, email: username,
+                password: createHash(password),
+                age, rol
+            })
+
+            return done(null, newUser);
+
+        } catch (error) {
+            done(error);
+        }
+
+    }))
+
+    passport.use('login', new local.Strategy({ usernameField: 'email' }, async (username, password, done) => {
+
+        try {
+
+            if (!username || !password) return done(null, false)
+
+            let usuario = await usersModel.findOne({ email: username })
+
+            if (!usuario) return done(null, false);
+            if (!isValidPassword(password, usuario)) return done(null, false);
+
+            return done(null, usuario);
+
+        } catch (error) {
+            console.log("Error:" + error)
+            return done(error);
+        }
+    }))
+
+    passport.serializeUser((user, done) => {
+        done(null, user._id)
+    });
+
+    passport.deserializeUser(async (id, done) => {
+        let usuario = await usersModel.findOne({ _id: id });
+        done(null, usuario);
+    });
+
+} // fin inicalizaEstrategias

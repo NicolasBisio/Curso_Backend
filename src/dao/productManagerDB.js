@@ -1,4 +1,4 @@
-import {productsModel} from './models/products.models.js';
+import { productsModel } from './models/products.models.js';
 
 export default class ProductManagerDB {
 
@@ -21,9 +21,9 @@ export default class ProductManagerDB {
     }
 
     async getProductById(req, res) {
-        let id = req.params.pid;
+        let idProd = req.params.pid;
 
-        let productById = await productsModel.find({ _id: id })
+        let productById = await productsModel.find({ _id: idProd })
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -34,20 +34,45 @@ export default class ProductManagerDB {
     async addProduct(req, res) {
         let productToCreate = req.body;
 
-        await productsModel.deleteMany({})
-        let newProduct = await productsModel.create(productToCreate);
+        let productsDB = await productsModel.find()
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(201).json({
-            newProduct
-        })
+        if (productToCreate.title && productToCreate.description && productToCreate.price && productToCreate.thumbnail && productToCreate.code && productToCreate.stock) {
+            let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
+            if (repeatedProduct) {
+                res.setHeader("Content-Type", "aplication/json")
+                return res.status(400).json({
+                    message: `El producto ${productToCreate.title} ya existe en la BD.`
+                })
+            } else {
+                productToCreate = {
+                    title: productToCreate.title,
+                    description: productToCreate.description,
+                    price: productToCreate.price,
+                    thumbnail: productToCreate.thumbnail,
+                    code: productToCreate.code,
+                    stock: productToCreate.stock,
+                }
+                productsDB.push(productToCreate)
+                await productsModel.updateOne(productsDB)
+                res.setHeader("Content-Type", "aplication/json")
+                res.status(200).json({
+                    productToCreate
+                })
+            }
+
+        } else {
+            res.setHeader("Content-Type", "aplication/json")
+            return res.status(400).json({
+                message: `Debe completar todos los campos.`
+            })
+        }
 
     }
 
     async addProductsMassive(req, res) {
         let titles = ['Producto1', 'Producto2', 'Producto3', 'Producto4', 'Producto5', 'Producto6', 'Producto7', 'Producto8', 'Producto9', 'ProductoA', 'ProductoB', 'ProductoC', 'ProductoD', 'ProductoE', 'ProductoF', 'ProductoG', 'ProductoH', 'ProductoI']
         let descriptions = ['DescA', 'DescB', 'DescC', 'DescD', 'DescE', 'DescF', 'DescG', 'DescH', 'DescI', 'DescJ', 'DescK', 'DescL', 'DescM', 'DescN', 'DescO']
-        let prices = [10000, 15000, 20000, 23000, 25000, 34000, 45000, 50000, 68000, 72000 ]
+        let prices = [10000, 15000, 20000, 23000, 25000, 34000, 45000, 50000, 68000, 72000]
         let thumbnails = [10000, 15000, 20000, 23000, 25000, 34000, 45000, 50000, 68000, 72000]
         let stocks = [100, 150, 200, 230, 25000, 340, 450, 500, 680, 720, 1000]
 
@@ -86,21 +111,21 @@ export default class ProductManagerDB {
     }
 
     async updateProduct(req, res) {
-        let id = req.params.pid;
+        let idProd = req.params.pid;
 
         let productToUpdate = req.body;
-        let newProduct = await productsModel.updateOne({ _id: id }, productToUpdate)
+        let updatedProduct = await productsModel.updateOne({ _id: idProd }, productToUpdate)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
-            newProduct
+            updatedProduct
         })
     }
 
     async deleteProduct(req, res) {
-        let id = req.params.pid;
+        let idProd = req.params.pid;
 
-        let productToDelete = await productsModel.deleteOne({ _id: id });
+        let productToDelete = await productsModel.deleteOne({ _id: idProd });
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({

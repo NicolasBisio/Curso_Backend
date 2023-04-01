@@ -1,51 +1,39 @@
 import { Router } from 'express';
+import passport from 'passport';
 import { usersModel } from '../dao/models/users.models.js';
-import crypto from 'crypto';
+import { createHash, isValidPassword } from "../utils/utils.js"
 
 const router = Router();
 
-router.post('/signUp', async (req, res) => {
-
-    let { name, lastName, mail, password, age } = req.body;
-
-    if (!mail || !password) return res.sendStatus(400) 
-
-    let currentUser = await usersModel.findOne({ mail: mail })
-
-    if (currentUser) return res.sendStatus(400);
-
-    let rol = "user"
-    if (mail == "adminCoder@coder.com" || password == "adminCod3r123") {
-        rol = "admin"
-    }
-
-    usersModel.create({
-        name, lastName, mail,
-        password: crypto.createHash('sha256', 'palabraSecreta').update(password).digest('base64'),
-        age, rol
-    })
-
-    res.redirect('/login');
+router.get('/github',passport.authenticate('github',{}),(req,res)=>{
 
 })
 
-router.post('/login', async (req, res) => {
+router.get('/callbackGithub',passport.authenticate('github',{failureRedirect:'/login'}),(req,res)=>{
 
-    let { mail, password } = req.body;
+    req.session.usuario={
+        nombre:req.user.nombre, 
+        apellido:req.user.apellido, 
+        email:req.user.email, 
+        edad:req.user.edad
+    }
 
-    if (!mail || !password) return res.sendStatus(400)
+    res.redirect('/');
 
-    let user = await usersModel.findOne({ mail: mail, password: crypto.createHash('sha256', 'palabraSecreta').update(password).digest('base64') })
+})
 
-    console.log(user)
-    if (!user) return res.sendStatus(401)
+router.post('/signUp', passport.authenticate('signUp', { failureRedirect: '/signUp', successRedirect: '/login' }), async (req, res) => {
+
+})
+
+router.post('/login', passport.authenticate('login', { failureRedirect: '/login' }), async (req, res) => {
 
     req.session.user = {
-        name: user.name,
-        lastName: user.lastName,
-        mail,
-        age: user.age,
-        rol: user.rol
+        name: req.user.name,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        age: req.user.age,
+        rol: req.user.rol
     }
 
     res.redirect('/products');

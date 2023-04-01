@@ -6,6 +6,8 @@ import { Server } from 'socket.io';
 import { default as mongoose } from 'mongoose';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import passport from 'passport';
+import { inicializaEstrategias } from './config/passport.config.js';
 
 import viewsRouter from './routes/views.router.js';
 import productsRouter from './routes/products.router.js';
@@ -38,6 +40,9 @@ app.use(session({
         ttl:60
     })
 }))
+inicializaEstrategias();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', viewsRouter)
 app.use('/api/products', productsRouter)
