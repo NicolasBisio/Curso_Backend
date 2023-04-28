@@ -15,13 +15,13 @@ export const inicializaEstrategias = () => {
         try {
             console.log(profile);
 
-            let nombre = profile._json.name;
+            let name = profile._json.name;
             let email = profile._json.email;
 
             let usuario = await usersModel.findOne({ email: email });
             if (!usuario) {
                 let usuarioNuevo = {
-                    nombre,
+                    name,
                     email,
                     github: true,
                     githubProfile: profile._json
@@ -57,15 +57,14 @@ export const inicializaEstrategias = () => {
 
             if (user) return done(null, false);
 
-            let rol = "user"
+            let role = "user"
             if (username == "adminCoder@coder.com" || password == "adminCod3r123") {
-                rol = "admin"
+                role = "admin"
             }
 
             let newUser = await usersModel.create({
-                name, lastName, email: username,
-                password: createHash(password),
-                age, rol
+                name, lastName, email: username, age,
+                password: createHash(password), role
             })
 
             return done(null, newUser);
