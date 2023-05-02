@@ -3,11 +3,11 @@ import { Router } from "express";
 const router = Router();
 
 //Llamar al controlador de MongoDB
-import ProductManagerDB from "../dao/productManagerDB.js";
+import ProductManagerDB from "../controllers/productManagerDB.js";
 const product = new ProductManagerDB
 
 // Llamando al controlador de FileSystem
-// import ProductManager from "../dao/productManagerFS.js";
+// import ProductManager from "../controllers/productManagerFS.js";
 // const product = new ProductManager("./src/productos.json")
 
 router.get('/', product.getProducts)

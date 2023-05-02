@@ -1,12 +1,13 @@
 import { Router } from "express";
+
 const router = Router();
 
 //Llamar al controlador de MongoDB
-import cartManagerDB from "../dao/cartManagerDB.js";
+import cartManagerDB from "../controllers/cartManagerDB.js";
 const cart = new cartManagerDB
 
 // Llamar al controlador de FileSystem 
-// import cartManager from "../dao/cartManagerFS.js";
+// import cartManager from "../controllers/cartManagerFS.js";
 // const cart = new cartManager("./src/cart.json")
 
 router.get('/', cart.getCarts)

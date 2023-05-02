@@ -1,4 +1,4 @@
-import { productsModel } from './models/products.models.js';
+import { productsModel } from '../dao/models/products.models.js';
 
 export default class ProductManagerDB {
 
@@ -36,8 +36,14 @@ export default class ProductManagerDB {
 
         let productsDB = await productsModel.find()
 
-        if (productToCreate.title && productToCreate.description && productToCreate.price && productToCreate.thumbnail && productToCreate.code && productToCreate.stock) {
+        if (productToCreate.title && 
+            productToCreate.description &&
+            productToCreate.price && 
+            productToCreate.thumbnail && 
+            productToCreate.code && 
+            productToCreate.stock) {
             let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
+            
             if (repeatedProduct) {
                 res.setHeader("Content-Type", "aplication/json")
                 return res.status(400).json({
@@ -52,8 +58,9 @@ export default class ProductManagerDB {
                     code: productToCreate.code,
                     stock: productToCreate.stock,
                 }
-                productsDB.push(productToCreate)
-                await productsModel.updateOne(productsDB)
+                
+                await productsModel.create(productToCreate)
+                
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
                     productToCreate
@@ -124,6 +131,8 @@ export default class ProductManagerDB {
 
     async deleteProduct(req, res) {
         let idProd = req.params.pid;
+
+        console.log(idProd)
 
         let productToDelete = await productsModel.deleteOne({ _id: idProd });
 

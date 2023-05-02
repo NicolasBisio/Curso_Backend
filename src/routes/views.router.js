@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const router = Router();
 
-import ViewsManagerDB from "../dao/viewsManagerDB.js";
+import ViewsManagerDB from "../controllers/viewsManagerDB.js";
 const view = new ViewsManagerDB
 
 const auth = (req, res, next) => {

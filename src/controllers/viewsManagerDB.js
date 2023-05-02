@@ -1,10 +1,10 @@
-import { productsModel } from './models/products.models.js';
-import { cartsModel } from './models/carts.models.js';
+import { productsModel } from '../dao/models/products.models.js';
+import { cartsModel } from '../dao/models/carts.models.js';
 
 import ProductManagerDB from "./productManagerDB.js";
 const product = new ProductManagerDB
 
-import cartManagerDB from "../dao/cartManagerDB.js";
+import cartManagerDB from "./cartManagerDB.js";
 const cart = new cartManagerDB
 
 export default class ViewsManagerDB {

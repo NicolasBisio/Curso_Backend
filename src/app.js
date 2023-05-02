@@ -14,6 +14,9 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 
+import ProductManager from "./controllers/productManagerFS.js";
+import messageManagerDB from './controllers/messageManagerDB.js';
+
 const PORT = 3000
 
 const app = express()
@@ -64,7 +67,6 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-import ProductManager from "./dao/productManagerFS.js";
 const product = new ProductManager("./productos.json")
 
 const messages = []
@@ -78,7 +80,6 @@ serverSockets.on('connection', (socket) => {
     socket.on('message', (message) => {
         console.log(`${message.user} dice ${message.message}`);
 
-        const messageManagerDB = require("./dao/messageManagerDB.js");
         const newMessage = new messageManagerDB
 
         newMessage.addMessage(message)
