@@ -5,17 +5,31 @@ import { createHash, isValidPassword } from "../utils/utils.js"
 
 const router = Router();
 
-router.get('/github',passport.authenticate('github',{}),(req,res)=>{
+router.get('/current', (req, res) => {
+    
+    req.session.user = {
+        name: req.user.name,
+        last_name: req.user.last_name,
+        email: req.user.email,
+        age: req.user.age,
+        role: req.user.role
+    }
+    console.log(req.session.user)
+
+    res.send(req.session.user)
+})
+
+router.get('/github', passport.authenticate('github', {}), (req, res) => {
 
 })
 
-router.get('/callbackGithub',passport.authenticate('github',{failureRedirect:'/login'}),(req,res)=>{
+router.get('/callbackGithub', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
 
-    req.session.usuario={
-        nombre:req.user.nombre, 
-        apellido:req.user.apellido, 
-        email:req.user.email, 
-        edad:req.user.edad
+    req.session.usuario = {
+        nombre: req.user.nombre,
+        apellido: req.user.apellido,
+        email: req.user.email,
+        edad: req.user.edad
     }
 
     res.redirect('/');
@@ -30,10 +44,10 @@ router.post('/login', passport.authenticate('login', { failureRedirect: '/login'
 
     req.session.user = {
         name: req.user.name,
-        lastName: req.user.lastName,
+        last_name: req.user.last_name,
         email: req.user.email,
         age: req.user.age,
-        rol: req.user.rol
+        role: req.user.role
     }
 
     res.redirect('/products');

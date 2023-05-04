@@ -1,5 +1,8 @@
 import { promises, existsSync } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+import ProductsMemoryDao from '../dao/productsMemoryDao';
+
+const productsDao = new ProductsMemoryDao
 
 export default class ProductManager {
     constructor(archivo) {
@@ -13,7 +16,7 @@ export default class ProductManager {
     }
 
     async addProduct(req, res) {
-        let products = await promises.readFile(this.path, "utf-8");
+        let products = await productsDao.get()
         products = JSON.parse(products);
 
         let newProduct = req.body
@@ -37,7 +40,7 @@ export default class ProductManager {
                     id: uuidv4()
                 }
                 products.push(newProduct)
-                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                await productsDao.post(products)
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
                     products
@@ -55,7 +58,7 @@ export default class ProductManager {
     async getProducts(req, res) {
         if (existsSync(this.path)) {
             let limit = req.query.limit;
-            let productosTxt = await promises.readFile(this.path, "utf-8");
+            let productosTxt = await productsDao.get()
             let products = JSON.parse(productosTxt);
 
             if (limit) {
@@ -75,7 +78,7 @@ export default class ProductManager {
         if (existsSync(this.path)) {
             let id = req.params.pid
 
-            let products = await promises.readFile(this.path, "utf-8")
+            let products = await productsDao.get()
             products = JSON.parse(products)
 
             const productById = products.find(element => element.id == id);
@@ -102,7 +105,7 @@ export default class ProductManager {
 
             console.log(newProduct)
 
-            let products = await promises.readFile(this.path, "utf-8")
+            let products = await productsDao.get()
             products = JSON.parse(products)
 
             if (newProduct.title && newProduct.description && newProduct.price && newProduct.thumbnail && newProduct.code && newProduct.stock) {
@@ -120,7 +123,7 @@ export default class ProductManager {
                     }
                     products[position].id = keepId
 
-                    await promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                    await productsDao.post(products)
                     res.setHeader("Content-Type", "aplication/json")
                     res.status(200).json({
                         products
@@ -149,7 +152,7 @@ export default class ProductManager {
     async deleteProduct(req, res) {
         if (existsSync(this.path)) {
             let id = req.params.pid
-            let products = await promises.readFile(this.path, "utf-8");
+            let products = await productsDao.get()
             products = JSON.parse(products);
 
             const position = products.findIndex(element => element.id == id);
@@ -158,7 +161,7 @@ export default class ProductManager {
                 let productosFiltrados = products.filter(element => element.id != id)
                 console.log(`Se ha eliminado el producto con posición ${position}`)
                 products = productosFiltrados
-                await promises.writeFile(this.path, JSON.stringify(products, null, 3))
+                await productsDao.post(products)
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
                     products

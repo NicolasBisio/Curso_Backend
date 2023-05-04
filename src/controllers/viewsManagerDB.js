@@ -41,8 +41,8 @@ export default class ViewsManagerDB {
         res.status(200).render('products', {
             products: products.docs,
             totalPages, hasPrevPage, hasNextPage, prevPage, nextPage,
-            fullName: req.session.user.name + ' ' + req.session.user.lastName,
-            rol: req.session.user.rol
+            fullName: req.session.user.name + ' ' + req.session.user.last_name,
+            role: req.session.user.role
         })
 
     }
@@ -79,8 +79,8 @@ export default class ViewsManagerDB {
     getHome(req, res) {
         res.setHeader('Content-Type', 'text/html');
         res.status(200).render('home', {
-            fullName: req.session.user.name + ' ' + req.session.user.lastName,
-            rol: req.session.user.rol
+            fullName: req.session.user.name + ' ' + req.session.user.last_name,
+            role: req.session.user.role
         })
     }
 

@@ -49,7 +49,7 @@ export const inicializaEstrategias = () => {
 
         try {
 
-            let { name, lastName, age } = req.body;
+            let { name, last_name, age } = req.body;
 
             if (!username || !password) return done(null, false)
 
@@ -63,7 +63,7 @@ export const inicializaEstrategias = () => {
             }
 
             let newUser = await usersModel.create({
-                name, lastName, email: username, age,
+                name, last_name, email: username, age,
                 password: createHash(password), role
             })
 

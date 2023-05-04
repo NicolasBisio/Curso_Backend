@@ -1,11 +1,19 @@
 import { productsModel } from '../dao/models/products.models.js';
+import ProductsDBDao from '../dao/productsDBDao.js';
+
+const productsDao = new ProductsDBDao
 
 export default class ProductManagerDB {
 
     async getProducts(req, res) {
         let products;
         try {
-            products = await productsModel.find()
+            products = await productsDao.get()
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                products
+            })
+
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(500).json({
@@ -13,17 +21,12 @@ export default class ProductManagerDB {
             })
         }
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            products
-        })
-
     }
 
     async getProductById(req, res) {
         let idProd = req.params.pid;
 
-        let productById = await productsModel.find({ _id: idProd })
+        let productById = await productsDao.getById(idProd)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -34,16 +37,16 @@ export default class ProductManagerDB {
     async addProduct(req, res) {
         let productToCreate = req.body;
 
-        let productsDB = await productsModel.find()
+        let productsDB = await productsDao.get()
 
-        if (productToCreate.title && 
+        if (productToCreate.title &&
             productToCreate.description &&
-            productToCreate.price && 
-            productToCreate.thumbnail && 
-            productToCreate.code && 
+            productToCreate.price &&
+            productToCreate.thumbnail &&
+            productToCreate.code &&
             productToCreate.stock) {
             let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
-            
+
             if (repeatedProduct) {
                 res.setHeader("Content-Type", "aplication/json")
                 return res.status(400).json({
@@ -58,9 +61,9 @@ export default class ProductManagerDB {
                     code: productToCreate.code,
                     stock: productToCreate.stock,
                 }
-                
-                await productsModel.create(productToCreate)
-                
+
+                await productsDao.post(productToCreate)
+
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
                     productToCreate
@@ -105,7 +108,7 @@ export default class ProductManagerDB {
 
         }
 
-        await productsModel.insertMany(productsMassive)
+        await productsDao.postMany(productsMassive)
 
         console.log(`Productos cargados exitosamente.`);
         res.setHeader('Content-Type', 'application/json');
@@ -121,7 +124,7 @@ export default class ProductManagerDB {
         let idProd = req.params.pid;
 
         let productToUpdate = req.body;
-        let updatedProduct = await productsModel.updateOne({ _id: idProd }, productToUpdate)
+        let updatedProduct = await productsDao.updateOne(idProd, productToUpdate)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -134,7 +137,7 @@ export default class ProductManagerDB {
 
         console.log(idProd)
 
-        let productToDelete = await productsModel.deleteOne({ _id: idProd });
+        let productToDelete = await productsDao.deleteOne(idProd);
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
