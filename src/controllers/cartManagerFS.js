@@ -1,5 +1,6 @@
 import { existsSync, promises } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+import { cartsDao } from '../app';
 
 export default class cartManager {
     constructor(archivo) {

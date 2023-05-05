@@ -1,6 +1,8 @@
 import { productsModel } from './models/products.models.js';
 
-export default class ProductsDBDao {
+export class ProductsDBDao {
+    constructor() {
+    }
 
     async get() {
         return await productsModel.find()
@@ -14,10 +16,10 @@ export default class ProductsDBDao {
         return await productsModel.create(product)
     }
 
-    async postMany(products){
+    async postMany(products) {
         return await productsModel.insertMany(products)
     }
-        
+
     async updateOne(idProd, product) {
         return await productsModel.updateOne({ _id: idProd }, product)
     }

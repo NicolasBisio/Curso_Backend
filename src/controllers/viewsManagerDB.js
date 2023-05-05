@@ -31,7 +31,7 @@ export default class ViewsManagerDB {
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(500).json({
-                mensaje: `Error al obtener los productos de la DB`
+                mensaje: `Error al obtener los productos de la DB.`
             })
         }
 

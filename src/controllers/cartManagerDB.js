@@ -1,3 +1,4 @@
+import { cartsDao } from '../app.js';
 import { cartsModel } from '../dao/models/carts.models.js';
 
 export default class cartManagerDB {
@@ -5,7 +6,7 @@ export default class cartManagerDB {
     async getCarts(req, res) {
         let carts;
         try {
-            carts = await cartsModel.find()
+            carts = await cartsDao.get()
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(500).json({
@@ -21,10 +22,9 @@ export default class cartManagerDB {
     }
 
     async getCartById(req, res) {
-        let id = req.params.cid;
-        let cartById = await cartsModel.find({ _id: id }).populate('products.productId') // probar, y probar con findById y con findOne
-        console.log(JSON.stringify({ cartById }, null, 3))
-
+        let idCart = req.params.cid;
+        let cartById = await cartsModel.find({ _id: idCart }).populate('products.productId') // probar, y probar con findById y con findOne
+        
         if (cartById) {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({
@@ -33,7 +33,7 @@ export default class cartManagerDB {
         } else {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({
-                mensaje: `El carrito con el id ${id} no fue encontrado.`
+                mensaje: `El carrito con el id ${idCart} no fue encontrado.`
             })
         }
     }
@@ -43,7 +43,7 @@ export default class cartManagerDB {
             products: []
         }
 
-        let newCart = await cartsModel.create(cartToCreate);
+        let newCart = await cartsDao.post(cartToCreate);
 
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
@@ -56,16 +56,16 @@ export default class cartManagerDB {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await cartsModel.findById(idCart)
+        let cart = await cartsDao.getById(idCart)
 
         if (cart) {
             let indexProd = cart.products.findIndex((item) => item.productId == idProd)
             if (indexProd !== -1) {
                 cart.products[indexProd].quantity++;
 
-                let resultado = await cartsModel.updateOne({ _id: idCart }, cart);
-                console.log(resultado)
-                let updatedCart = await cartsModel.findOne({ _id: idCart })
+                let resultado = await cartsDao.updateOne(idCart, cart);
+                
+                let updatedCart = await cartsDao.getById(idCart)
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
                     updatedCart
@@ -75,8 +75,8 @@ export default class cartManagerDB {
                     productId: idProd,
                     quantity: 1
                 })
-                await cartsModel.updateOne({ _id: idCart }, cart)
-                let newCart = await cartsModel.findOne({ _id: idCart })
+                await cartsDao.updateOne(idCart, cart);
+                let newCart = await cartsDao.getById(idCart)
                 res.setHeader('Content-Type', 'application/json');
                 res.status(201).json({
                     newCart
@@ -97,7 +97,7 @@ export default class cartManagerDB {
         // agregar validaciones??
 
         try {
-            let updatedCart = await cartsModel.updateOne({ _id: idCart }, cartToUpdate)
+            let updatedCart = await cartsDao.updateOne(idCart, cart);
             console.log(updatedCart)
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
@@ -106,7 +106,7 @@ export default class cartManagerDB {
             })
         }
 
-        let updatedCart = await cartsModel.findOne({ _id: idCart })
+        let updatedCart = await cartsDao.getById(idCart)
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
             updatedCart
@@ -119,14 +119,14 @@ export default class cartManagerDB {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await cartsModel.findById(idCart)
+        let cart = await cartsDao.getById(idCart)
         if (cart) {
             let product = cart.products.find((item) => item.productId == idProd)
             if (product) {
                 product.quantity = newQuantity;
                 await cartsModel.updateOne({ _id: idCart }, { $set: { products: cart.products } });
 
-                let updatedCart = await cartsModel.findOne({ _id: idCart })
+                let updatedCart = await cartsDao.getById(idCart)
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
                     updatedCart
@@ -150,7 +150,7 @@ export default class cartManagerDB {
         let cartToDelete;
 
         try {
-            cartToDelete = await cartsModel.deleteOne({ _id: idCart });
+            cartToDelete = await cartsDao.deleteOne(idCart);
             console.dir('Carrito eliminado: ' + cartToDelete)
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
@@ -159,7 +159,7 @@ export default class cartManagerDB {
             })
         }
 
-        let carts = await cartsModel.find()
+        let carts = await cartsDao.get()
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
             carts
@@ -171,12 +171,12 @@ export default class cartManagerDB {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await cartsModel.findById(idCart)
+        let cart = await cartsDao.getById(idCart)
         if (cart) {
             let indexProd = cart.products.findIndex((item) => item.productId == idProd)
             if (indexProd !== -1) {
                 await cartsModel.deleteOne({ "products.productId": idProd });
-                let updatedCart = await cartsModel.findOne({ _id: idCart })
+                let updatedCart = await cartsDao.getById(idCart)
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
                     updatedCart

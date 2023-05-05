@@ -1,8 +1,6 @@
 import { promises, existsSync } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import ProductsMemoryDao from '../dao/productsMemoryDao';
-
-const productsDao = new ProductsMemoryDao
+import { productsDao } from '../app.js';
 
 export default class ProductManager {
     constructor(archivo) {
@@ -15,63 +13,111 @@ export default class ProductManager {
         this.deleteProduct = this.deleteProduct.bind(this);
     }
 
+    // async addProduct(req, res) {
+    //     let products = await productsDao.get()
+    //     products = JSON.parse(products);
+
+    //     let newProduct = req.body
+    //     let repeatedProduct = products.find(element => element.code === newProduct.code)
+
+    //     if (newProduct.title && newProduct.description && newProduct.price && newProduct.thumbnail && newProduct.code && newProduct.stock) {
+    //         if (repeatedProduct) {
+    //             console.log(`El producto ${newProduct.title} ya existe.`)
+    //             res.setHeader("Content-Type", "aplication/json")
+    //             return res.status(400).json({
+    //                 message: `El producto ${newProduct.title} ya existe.`
+    //             })
+    //         } else {
+    //             newProduct = {
+    //                 title: newProduct.title,
+    //                 description: newProduct.description,
+    //                 price: newProduct.price,
+    //                 thumbnail: newProduct.thumbnail,
+    //                 code: newProduct.code,
+    //                 stock: newProduct.stock,
+    //                 id: uuidv4()
+    //             }
+    //             products.push(newProduct)
+    //             await productsDao.post(products)
+    //             res.setHeader("Content-Type", "aplication/json")
+    //             res.status(200).json({
+    //                 products
+    //             })
+    //         }
+    //     } else {
+    //         console.log("Debe completar todos los campos")
+    //         res.setHeader("Content-Type", "aplication/json")
+    //         return res.status(400).json({
+    //             message: `Debe completar todos los campos.`
+    //         })
+    //     }
+    // }
+
     async addProduct(req, res) {
-        let products = await productsDao.get()
-        products = JSON.parse(products);
+        let productToCreate = req.body;
 
-        let newProduct = req.body
-        let repeatedProduct = products.find(element => element.code === newProduct.code)
+        let productsDB = await productsDao.get()
 
-        if (newProduct.title && newProduct.description && newProduct.price && newProduct.thumbnail && newProduct.code && newProduct.stock) {
+        if (productToCreate.title &&
+            productToCreate.description &&
+            productToCreate.price &&
+            productToCreate.thumbnail &&
+            productToCreate.code &&
+            productToCreate.stock) {
+
+            let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
+
             if (repeatedProduct) {
-                console.log(`El producto ${newProduct.title} ya existe.`)
                 res.setHeader("Content-Type", "aplication/json")
                 return res.status(400).json({
-                    message: `El producto ${newProduct.title} ya existe.`
+                    message: `El producto ${productToCreate.title} ya existe en la BD.`
                 })
             } else {
-                newProduct = {
-                    title: newProduct.title,
-                    description: newProduct.description,
-                    price: newProduct.price,
-                    thumbnail: newProduct.thumbnail,
-                    code: newProduct.code,
-                    stock: newProduct.stock,
-                    id: uuidv4()
+                productToCreate = {
+                    title: productToCreate.title,
+                    description: productToCreate.description,
+                    price: productToCreate.price,
+                    thumbnail: productToCreate.thumbnail,
+                    code: productToCreate.code,
+                    stock: productToCreate.stock,
                 }
-                products.push(newProduct)
-                await productsDao.post(products)
+
+                await productsDao.post(productToCreate)
+
+                console.log(productToCreate)
+
                 res.setHeader("Content-Type", "aplication/json")
-                res.status(200).json({
-                    products
+                return res.status(200).json({
+                    productToCreate
                 })
             }
+
         } else {
-            console.log("Debe completar todos los campos")
             res.setHeader("Content-Type", "aplication/json")
             return res.status(400).json({
                 message: `Debe completar todos los campos.`
             })
         }
+
     }
 
     async getProducts(req, res) {
-        if (existsSync(this.path)) {
-            let limit = req.query.limit;
-            let productosTxt = await productsDao.get()
-            let products = JSON.parse(productosTxt);
+        let products;
+        try {
+            products = await productsDao.get()
+            console.log(products)
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                products
+            })
 
-            if (limit) {
-                let limitedResult = products.slice(0, limit);
-                res.setHeader("Content-Type", "application/json");
-                res.status(200).send(limitedResult);
-            } else {
-                res.setHeader("Content-Type", "application/json");
-                res.status(200).send(products);
-            }
-        } else {
-            return []
+        } catch (error) {
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(500).json({
+                mensaje: `Error al obtener los productos`
+            })
         }
+
     }
 
     async getProductById(req, res) {

@@ -1,13 +1,14 @@
 import __dirname from './utils/utils.js';
 import path from 'path';
 import express, { json, urlencoded } from 'express';
+import { config } from './config/config.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import { default as mongoose } from 'mongoose';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { inicializaEstrategias } from './config/passport.config.js';
+import { setDao } from './dao/factory.js';
 
 import viewsRouter from './routes/views.router.js';
 import productsRouter from './routes/products.router.js';
@@ -17,9 +18,20 @@ import sessionsRouter from './routes/sessions.router.js';
 import ProductManager from "./controllers/productManagerFS.js";
 import messageManagerDB from './controllers/messageManagerDB.js';
 
-const PORT = 3000
+const PORT = config.app.PORT
 
 const app = express()
+
+let cartsDao;
+let productsDao;
+const init = async () => {
+    let auxDao = await setDao()
+    cartsDao = auxDao.carts
+    productsDao = auxDao.products
+    console.log(cartsDao)
+    console.log(productsDao)
+}
+init()
 
 app.engine('handlebars', engine({
     runtimeOptions: {
@@ -40,7 +52,7 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce',
-        ttl:60
+        ttl: 60
     })
 }))
 inicializaEstrategias();
@@ -90,17 +102,8 @@ serverSockets.on('connection', (socket) => {
 
 })
 
-const conectar = async () => {
-    try {
-        await mongoose.connect('mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce')
-        console.log('Conexión a BD establecida')
-    } catch (error) {
-        console.log(`Error al conectarse con el servidor de BD: ${error}`)
-    }
-}
 
-conectar()
 
-export default messages;
+export {messages, cartsDao, productsDao};
 
 serverHttp.on('error', (error) => console.log(error));

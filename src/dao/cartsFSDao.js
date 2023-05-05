@@ -1,7 +1,7 @@
-import { productsModel } from './models/products.models.js';
+import { cartsModel } from './models/carts.models.js';
 import { promises } from 'fs';
 
-export default class ProductsMemoryDao {
+export class CartsFSDao {
     constructor(archivo) { //ver cómo hacer con el archivo. Variables de entorno??
         this.path = archivo;
     }

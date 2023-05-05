@@ -42,7 +42,6 @@ export default class ProductManagerDB {
             productToCreate.thumbnail &&
             productToCreate.code &&
             productToCreate.stock) {
-                
             let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
 
             if (repeatedProduct) {

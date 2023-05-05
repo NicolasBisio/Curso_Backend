@@ -1,38 +1,8 @@
-[
-   {
-      "title": "4. Cuarto producto de prueba",
-      "description": "Este es un cuarto producto de prueba",
-      "price": 200,
-      "thumbnail": "Sin imagen",
-      "code": "456",
-      "stock": "15",
-      "id": 4
-   },
-   {
-      "title": "abcd",
-      "description": "bbbb",
-      "price": "1",
-      "thumbnail": "abcd",
-      "code": "cccc",
-      "stock": "2",
-      "id": 5
-   },
-   {
-      "title": "dfsdfs",
-      "description": "gdfgdfgd",
-      "price": "200",
-      "thumbnail": "adsdafas",
-      "code": "lodaos",
-      "stock": "15",
-      "id": "9ea2b7d9-0a02-422c-869d-896920d2f2d8"
-   },
-   {
-      "title": "dfsdfs",
-      "description": "gdfgdfgd",
-      "price": "200",
-      "thumbnail": "adsdafas",
-      "code": "lodasasdsdasc",
-      "stock": "15",
-      "id": "b08819b4-3430-4682-bef2-68386b41764e"
-   }
-]
+{
+   "title": "DB",
+   "description": "FS",
+   "price": "100",
+   "thumbnail": "FS",
+   "code": "FS1004",
+   "stock": "15"
+}
