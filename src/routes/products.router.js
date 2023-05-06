@@ -16,7 +16,7 @@ router.get('/:pid', product.getProductById)
 
 router.post("/", product.addProduct)
 
-//router.post("/massive", product.addProductsMassive)
+router.post("/massive", product.addProductsMassive)
 
 router.put("/:pid", product.updateProduct)
 

@@ -11,6 +11,8 @@ export const config={
     },
     database:{
         MONGOURL: process.env.MONGOURL,
-        DB: process.env.DB
+        DB: process.env.DB,
+        FILECART: process.env.FILECART,
+        FILEPRODUCT: process.env.FILEPRODUCT
     }
 }
