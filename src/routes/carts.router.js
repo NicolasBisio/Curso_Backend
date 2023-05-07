@@ -20,10 +20,10 @@ router.post("/", cart.addCart)
 
 router.post("/:cid/products/:pid", cart.addProductToCart)
 
-// router.put('/:cid/products/:pid', cart.updateProductFromCart)
+router.put("/:cid/products/:pid", cart.updateProductFromCart)
 
 router.delete("/:cid", cart.deleteCart)
 
-// router.delete("/:cid/products/:pid", cart.deleteProductInCart)
+router.delete("/:cid/products/:pid", cart.deleteProductFromCart)
 
 export default router;

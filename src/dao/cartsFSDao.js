@@ -4,8 +4,8 @@ import fs from 'fs'
 export class CartsFSDao {
     constructor(archivo) {
         if (!fs.existsSync(archivo)) {
-            let carritos = []
-            fs.writeFileSync(archivo, JSON.stringify(carritos, null, 5))
+            let carts = []
+            fs.writeFileSync(archivo, JSON.stringify(carts, null, 5))
         }
         this.path = archivo;
     }
@@ -14,30 +14,30 @@ export class CartsFSDao {
         return JSON.parse(await promises.readFile(this.path, "utf-8"));
     }
 
-    async getById(id) {
-        console.log(id)
+    async getById(idCart) {
+        console.log(idCart)
         let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let cart = carts.find(cart => cart.id == id)
+        let cart = carts.find(cart => cart.id == idCart)
         console.log(cart)
         return cart
     }
 
     async post(cart) {
-        let carritos = await this.get()
-        if (carritos.length == 0) {
+        let carts = await this.get()
+        if (carts.length == 0) {
             cart.id = 1
         } else {
-            cart.id = carritos[carritos.length - 1].id + 1
+            cart.id = carts[carts.length - 1].id + 1
         }
-        console.log(carritos)
-        carritos.push(cart)
-        await promises.writeFile(this.path, JSON.stringify(carritos, null, 3))
-        return carritos
+        console.log(carts)
+        carts.push(cart)
+        await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
+        return carts
     }
 
-    async updateOne(id, cart) {
+    async updateOne(idCart, cart) {
         let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let indice = carts.findIndex(prod => prod.id == id)
+        let indice = carts.findIndex(cart => cart.id == idCart)
         if (indice != -1) {
             carts.splice(indice, 1)
             carts.push(cart)
@@ -46,12 +46,12 @@ export class CartsFSDao {
         }
     }
 
-    async deleteOne(cart) {
+    async deleteOneCart(idCart) {
         let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let indice = carts.findIndex(pr => pr.id == id)
+        let indice = carts.findIndex(cart => cart.id == idCart)
         if (indice != -1) {
             carts.splice(indice, 1)
-            await promises.writeFile(this.path, JSON.stringify(cart, null, 3))
+            await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
             return carts
         }
     }

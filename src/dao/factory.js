@@ -9,7 +9,6 @@ export const setDao = async () => {
             let { CartsFSDao } = await import('./cartsFSDao.js')
             let { ProductsFSDao } = await import('./productsFSDao.js')
 
-
             return {
                 carts: new CartsFSDao(config.database.FILECART),
                 products: new ProductsFSDao(config.database.FILEPRODUCT)
