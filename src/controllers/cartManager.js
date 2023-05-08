@@ -26,23 +26,13 @@ export default class cartManager {
     }
 
     async addCart(req, res) {
-
-        // armas tu carrito, y si hubiese que validar algo, lo haces acá... 
-        // Si la validación necesita algo de la DB (o de la persistencia), usas el daoCart.get
-        // para traer los datos, y validas de este lado. 
-
-        // console.log(uuidv4());
-
         let newCart = {
-            // id: uuidv4(),
+            id: uuidv4(),
             products: []
         }
 
-        console.log(newCart)
-
-        // Luego armas carrito, y haces:
         let carts = await daoCart.post(newCart)
-
+        
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({
             carts
@@ -60,7 +50,6 @@ export default class cartManager {
                 cartById
             })
         } else {
-            console.error("Not Found 1")
             res.setHeader("Content-Type", "application/json")
             res.status(400).json({
                 message: `No existe el carrito con Id '${idCart}'`
@@ -73,14 +62,10 @@ export default class cartManager {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        console.log(idProd)
-
         const newProduct = {
             productId: Number(idProd),
             quantity: 1
         }
-
-        console.log(newProduct)
 
         let cart = await daoCart.getById(idCart)
         if (!cart) return res.send(`El cart ${idCart} no existe.`)
@@ -91,8 +76,6 @@ export default class cartManager {
         } else {
             cart.products[indexProduct].quantity++
         }
-
-        console.log(cart)
 
         let carts = await daoCart.updateOne(idCart, cart)
         res.setHeader("Content-Type", "application/json")
@@ -155,7 +138,6 @@ export default class cartManager {
         let cart = await daoCart.getById(idCart)
         if (cart) {
             let productIndex = cart.products.findIndex(prod => prod.productId == idProd)
-            console.log(productIndex)
             if (productIndex != -1) {
                 cart.products.splice(productIndex, 1)
 
@@ -178,5 +160,4 @@ export default class cartManager {
         }
     }
 
-
-}  // fin class
+}

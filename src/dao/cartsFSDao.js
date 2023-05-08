@@ -24,12 +24,6 @@ export class CartsFSDao {
 
     async post(cart) {
         let carts = await this.get()
-        if (carts.length == 0) {
-            cart.id = 1
-        } else {
-            cart.id = carts[carts.length - 1].id + 1
-        }
-        console.log(carts)
         carts.push(cart)
         await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
         return carts
