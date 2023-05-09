@@ -25,7 +25,7 @@ export class CartsFSDao {
     async post(cart) {
         let carts = await this.get()
         carts.push(cart)
-        await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
+        await promises.writeFile(this.path, JSON.stringify(carts, null, 3));
         return carts
     }
 

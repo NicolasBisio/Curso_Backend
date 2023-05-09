@@ -63,7 +63,7 @@ export default class cartManager {
         let idProd = req.params.pid
 
         const newProduct = {
-            productId: Number(idProd),
+            productId: (idProd),
             quantity: 1
         }
 

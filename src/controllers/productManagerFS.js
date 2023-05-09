@@ -1,6 +1,5 @@
 import { promises, existsSync } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import { productsDao } from '../app.js';
 
 export default class ProductManager {
     constructor(archivo) {

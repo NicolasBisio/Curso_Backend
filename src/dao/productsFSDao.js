@@ -1,4 +1,3 @@
-import { productsModel } from './models/products.models.js';
 import { existsSync, promises } from 'fs';
 
 export class ProductsFSDao {
