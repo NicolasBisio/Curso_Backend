@@ -20,11 +20,11 @@ export class ProductsDBDao {
         return await productsModel.insertMany(products)
     }
 
-    async updateOne(idProd, product) {
+    async updateById(idProd, product) {
         return await productsModel.updateOne({ _id: idProd }, product)
     }
 
-    async deleteOne(idProd) {
+    async deleteById(idProd) {
         return await productsModel.deleteOne({ _id: idProd });
     }
 

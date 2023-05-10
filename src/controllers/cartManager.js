@@ -1,5 +1,3 @@
-import { existsSync, promises } from 'fs';
-import { v4 as uuidv4 } from 'uuid';
 import { setDao } from '../dao/factory.js';
 
 const dao = await setDao()
@@ -27,15 +25,15 @@ export default class cartManager {
 
     async addCart(req, res) {
         let newCart = {
-            id: uuidv4(),
             products: []
         }
 
-        let carts = await daoCart.post(newCart)
-        
+        let cart = await daoCart.post(newCart)
+        console.log(cart)
+
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({
-            carts
+            cart
         })
 
     }

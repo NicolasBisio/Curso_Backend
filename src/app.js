@@ -22,6 +22,10 @@ const PORT = config.app.PORT
 
 const app = express()
 
+app.post('/prueba', (req,res)=>{
+    res.send('hola mundo')
+})
+
 let cartsDao;
 let productsDao;
 const init = async () => {

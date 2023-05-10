@@ -15,25 +15,25 @@ export class CartsFSDao {
     }
 
     async getById(idCart) {
-        console.log(idCart)
-        let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let cart = carts.find(cart => cart.id == idCart)
-        console.log(cart)
-        return cart
+        let carts = await this.get()
+        let cartByID = carts.find(cart => cart.id == idCart)
+        return cartByID
     }
 
-    async post(cart) {
+    async post(cartToCreate) {
         let carts = await this.get()
-        carts.push(cart)
+        cartToCreate.id = uuidv4()
+        carts.push(cartToCreate)
         await promises.writeFile(this.path, JSON.stringify(carts, null, 3));
-        return carts
+        return cartToCreate
     }
 
     async updateOne(idCart, cart) {
-        let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let indice = carts.findIndex(cart => cart.id == idCart)
-        if (indice != -1) {
-            carts.splice(indice, 1)
+        let carts = await this.get()
+        let cartIndex = carts.findIndex(cart => cart.id == idCart)
+        if (cartIndex != -1) {
+            carts.splice(cartIndex, 1)
+            cart.id = idCart
             carts.push(cart)
             await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
             return cart
@@ -41,10 +41,10 @@ export class CartsFSDao {
     }
 
     async deleteOneCart(idCart) {
-        let carts = JSON.parse(await promises.readFile(this.path, "utf-8"));
-        let indice = carts.findIndex(cart => cart.id == idCart)
-        if (indice != -1) {
-            carts.splice(indice, 1)
+        let carts = await this.get()
+        let cartIndex = carts.findIndex(cart => cart.id == idCart)
+        if (cartIndex != -1) {
+            carts.splice(cartIndex, 1)
             await promises.writeFile(this.path, JSON.stringify(carts, null, 3))
             return carts
         }

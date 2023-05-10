@@ -26,7 +26,7 @@ export default class ProductManager {
     async getProductById(req, res) {
         let idProd = req.params.pid;
 
-        let productById = await productsDao.getById(idProd)
+        let productById = await daoProduct.getById(idProd)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -37,7 +37,7 @@ export default class ProductManager {
     async addProduct(req, res) {
         let productToCreate = req.body;
 
-        let productsDB = await productsDao.get()
+        let products = await daoProduct.get()
 
         if (productToCreate.title &&
             productToCreate.description &&
@@ -46,12 +46,12 @@ export default class ProductManager {
             productToCreate.code &&
             productToCreate.stock) {
                 
-            let repeatedProduct = productsDB.find(element => element.code == productToCreate.code)
+            let repeatedProduct = products.find(prod => prod.code == productToCreate.code)
 
             if (repeatedProduct) {
                 res.setHeader("Content-Type", "aplication/json")
                 return res.status(400).json({
-                    message: `El producto ${productToCreate.title} ya existe en la BD.`
+                    message: `El producto ${productToCreate.title} ya existe.`
                 })
             } else {
                 productToCreate = {
@@ -63,11 +63,11 @@ export default class ProductManager {
                     stock: productToCreate.stock,
                 }
 
-                await productsDao.post(productToCreate)
+                let productCreated = await daoProduct.post(productToCreate)
 
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
-                    productToCreate
+                    productCreated
                 })
             }
 
@@ -109,7 +109,7 @@ export default class ProductManager {
 
         }
 
-        await productsDao.postMany(productsMassive)
+        await daoProduct.postMany(productsMassive)
 
         console.log(`Productos cargados exitosamente.`);
         res.setHeader('Content-Type', 'application/json');
@@ -125,7 +125,7 @@ export default class ProductManager {
         let idProd = req.params.pid;
 
         let productToUpdate = req.body;
-        let updatedProduct = await productsDao.updateOne(idProd, productToUpdate)
+        let updatedProduct = await daoProduct.updateById(idProd, productToUpdate)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -135,14 +135,11 @@ export default class ProductManager {
 
     async deleteProduct(req, res) {
         let idProd = req.params.pid;
-
-        console.log(idProd)
-
-        let productToDelete = await productsDao.deleteOne(idProd);
+        let products = await daoProduct.deleteById(idProd);
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
-            productToDelete
+            products
         })
     }
 
