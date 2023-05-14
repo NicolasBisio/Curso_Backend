@@ -5,27 +5,52 @@ export class ProductsDBDao {
     }
 
     async get() {
-        return await productsModel.find()
+        try {
+            return await productsModel.find()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async getById(idProd) {
-        return await productsModel.find({ _id: idProd })
+        try {
+            return await productsModel.find({ _id: idProd })
+        } catch (error) {
+            console.log(error)
+            return undefined
+        }
     }
 
     async post(product) {
-        return await productsModel.create(product)
+        try {
+            return await productsModel.create(product)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async postMany(products) {
-        return await productsModel.insertMany(products)
+        try {
+            return await productsModel.insertMany(products)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async updateById(idProd, product) {
-        return await productsModel.updateOne({ _id: idProd }, product)
+        try {
+            return await productsModel.updateOne({ _id: idProd }, product)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async deleteById(idProd) {
-        return await productsModel.deleteOne({ _id: idProd });
+        try {
+            return await productsModel.deleteOne({ _id: idProd });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }

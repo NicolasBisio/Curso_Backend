@@ -14,7 +14,6 @@ router.get('/current', (req, res) => {
         age: req.user.age,
         role: req.user.role
     }
-    console.log(req.session.user)
 
     res.send(req.session.user)
 })

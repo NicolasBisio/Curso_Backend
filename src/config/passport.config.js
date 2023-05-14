@@ -13,8 +13,6 @@ export const inicializaEstrategias = () => {
     }, async (accessToken, refreshToken, profile, done) => {
 
         try {
-            console.log(profile);
-
             let name = profile._json.name;
             let email = profile._json.email;
 
@@ -89,7 +87,6 @@ export const inicializaEstrategias = () => {
             return done(null, usuario);
 
         } catch (error) {
-            console.log("Error:" + error)
             return done(error);
         }
     }))

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 
 dotenv.config({
-    override:true, path:'./src/.env'
+    override:true, path:'./.env'
 })
 
 export const config={

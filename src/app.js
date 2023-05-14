@@ -1,4 +1,4 @@
-import __dirname from './utils/utils.js';
+import __dirname from './dirname.js'
 import path from 'path';
 import express, { json, urlencoded } from 'express';
 import { config } from './config/config.js';
@@ -8,34 +8,18 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { inicializaEstrategias } from './config/passport.config.js';
-import { setDao } from './dao/factory.js';
 
 import viewsRouter from './routes/views.router.js';
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 
-import ProductManager from "./controllers/productManagerFS.js";
-import messageManagerDB from './controllers/messageManagerDB.js';
+import messageManager from './controllers/messageManager.js';
 
 const PORT = config.app.PORT
 
 const app = express()
 
-app.post('/prueba', (req,res)=>{
-    res.send('hola mundo')
-})
-
-let cartsDao;
-let productsDao;
-const init = async () => {
-    let auxDao = await setDao()
-    cartsDao = auxDao.carts
-    productsDao = auxDao.products
-    console.log(cartsDao)
-    console.log(productsDao)
-}
-init()
 
 app.engine('handlebars', engine({
     runtimeOptions: {
@@ -44,8 +28,7 @@ app.engine('handlebars', engine({
     },
 }));
 app.set('view engine', 'handlebars');
-// app.set('views', path.join(__dirname, './views'));
-app.set('views', './src/views')
+app.set('views', path.join(__dirname, '/views'));
 
 app.use(json())
 app.use(urlencoded({ extended: true }))
@@ -68,7 +51,7 @@ app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
 app.use('/api/sessions', sessionsRouter)
 
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static('../public'));
 
 app.get('*', (req, res) => {
     res.setHeader('Content-Type', 'aplication/json')
@@ -83,20 +66,15 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-const product = new ProductManager("./productos.json")
-
 const messages = []
 
 serverSockets.on('connection', (socket) => {
     console.log(`Se han conectado, socket id ${socket.id}`)
-    product.getProducts().then(products => {
-        socket.emit('getProducts', { products })
-    })
 
     socket.on('message', (message) => {
         console.log(`${message.user} dice ${message.message}`);
 
-        const newMessage = new messageManagerDB
+        const newMessage = new messageManager
 
         newMessage.addMessage(message)
 
@@ -106,8 +84,6 @@ serverSockets.on('connection', (socket) => {
 
 })
 
-
-
-export {messages, cartsDao, productsDao};
+export {messages};
 
 serverHttp.on('error', (error) => console.log(error));

@@ -26,7 +26,6 @@ export default class ViewsManagerDB {
 
         try {
             products = await productsModel.paginate({}, { page: paginaActual, limit: limit, sort: { price: sort } })
-            console.log(products)
 
         } catch (error) {
             res.setHeader('Content-Type', 'application/json');
@@ -61,7 +60,6 @@ export default class ViewsManagerDB {
     async getCartById(req, res) {
         let id = req.params.cid;
         let cartById = await cartsModel.find({ _id: id }).populate('products.productId')
-        console.log({ cartById })
 
         if (cartById) {
             res.setHeader('Content-Type', 'text/html');

@@ -1,14 +1,11 @@
-import { setDao } from '../dao/factory.js';
-
-const dao = await setDao()
-const daoProduct = dao.products
+import { productsService } from '../services/index.js';
 
 export default class ProductManager {
 
     async getProducts(req, res) {
         let products;
         try {
-            products = await daoProduct.get()
+            products = await productsService.getProducts()
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({
                 products
@@ -26,7 +23,7 @@ export default class ProductManager {
     async getProductById(req, res) {
         let idProd = req.params.pid;
 
-        let productById = await daoProduct.getById(idProd)
+        let productById = await productsService.getProductById(idProd)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -37,7 +34,7 @@ export default class ProductManager {
     async addProduct(req, res) {
         let productToCreate = req.body;
 
-        let products = await daoProduct.get()
+        let products = await productsService.getProducts()
 
         if (productToCreate.title &&
             productToCreate.description &&
@@ -63,7 +60,7 @@ export default class ProductManager {
                     stock: productToCreate.stock,
                 }
 
-                let productCreated = await daoProduct.post(productToCreate)
+                let productCreated = await productsService.createProduct(productToCreate)
 
                 res.setHeader("Content-Type", "aplication/json")
                 res.status(200).json({
@@ -109,9 +106,8 @@ export default class ProductManager {
 
         }
 
-        await daoProduct.postMany(productsMassive)
+        await productsService.createManyProducts(productsMassive)
 
-        console.log(`Productos cargados exitosamente.`);
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
             message: `Productos cargados exitosamente.`
@@ -125,7 +121,7 @@ export default class ProductManager {
         let idProd = req.params.pid;
 
         let productToUpdate = req.body;
-        let updatedProduct = await daoProduct.updateById(idProd, productToUpdate)
+        let updatedProduct = await productsService.updateProductById(idProd, productToUpdate)
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
@@ -135,7 +131,7 @@ export default class ProductManager {
 
     async deleteProduct(req, res) {
         let idProd = req.params.pid;
-        let products = await daoProduct.deleteById(idProd);
+        let products = await productsService.deleteProductById(idProd);
 
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({

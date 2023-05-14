@@ -1,7 +1,4 @@
-import { setDao } from '../dao/factory.js';
-
-const dao = await setDao()
-const daoCart = dao.carts
+import { cartsService, productsService } from '../services/index.js';
 
 export default class cartManager {
     constructor() {
@@ -15,7 +12,7 @@ export default class cartManager {
     }
 
     async getCarts(req, res) {
-        let carts = await daoCart.get()
+        let carts = await cartsService.getCarts()
         res.setHeader("Content-Type", "application/json")
         res.status(200).json({
             carts
@@ -28,8 +25,7 @@ export default class cartManager {
             products: []
         }
 
-        let cart = await daoCart.post(newCart)
-        console.log(cart)
+        let cart = await cartsService.createNewCart(newCart)
 
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({
@@ -40,7 +36,7 @@ export default class cartManager {
 
     async getCartById(req, res) {
         let idCart = req.params.cid
-        let cartById = await daoCart.getById(idCart)
+        let cartById = await cartsService.getCartById(idCart)
 
         if (cartById) {
             res.setHeader("Content-Type", "application/json")
@@ -57,28 +53,34 @@ export default class cartManager {
     }
 
     async addProductToCart(req, res) {
-        let idCart = req.params.cid
-        let idProd = req.params.pid
+        let idCart = req.params.cid;
+        let idProd = req.params.pid;
+        let cart;
 
         const newProduct = {
             productId: (idProd),
             quantity: 1
         }
 
-        let cart = await daoCart.getById(idCart)
-        if (!cart) return res.send(`El cart ${idCart} no existe.`)
+        const prodDB = await productsService.getProductById(idProd)
+
+        if(!prodDB) return res.status(400).send(`No existe un producto con id ${idProd}.`)
+
+        cart = await cartsService.getCartById(idCart)
+
+        if (!cart) return res.status(400).send(`No existe un carrito con id ${idCart}.`)
 
         let indexProduct = cart.products.findIndex(prod => prod.productId == idProd)
-        if (indexProduct == -1) {
-            cart.products.push(newProduct)
-        } else {
-            cart.products[indexProduct].quantity++
-        }
+                if (indexProduct == -1) {
+                    cart.products.push(newProduct)
+                } else {
+                    cart.products[indexProduct].quantity++
+                }
 
-        let carts = await daoCart.updateOne(idCart, cart)
+        await cartsService.updateCartById(idCart, cart)
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({
-            carts
+            cart
         })
 
     }
@@ -88,12 +90,12 @@ export default class cartManager {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await daoCart.getById(idCart)
+        let cart = await cartsService.getCartById(idCart)
         if (cart) {
             let product = cart.products.find(item => item.productId == idProd)
             if (product) {
                 product.quantity = newQuantity;
-                let updatedCart = await daoCart.updateOne(idCart, cart)
+                let updatedCart = await cartsService.updateCartById(idCart, cart)
 
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
@@ -115,13 +117,13 @@ export default class cartManager {
 
     async deleteCart(req, res) {
         let idCart = req.params.cid
-        let cart = await daoCart.getById(idCart)
+        let cart = await cartsService.getCartById(idCart)
 
         if (!cart) return res.status(400).send(`No existe un carrito con id ${idCart}.`)
 
-        await daoCart.deleteOneCart(idCart)
+        await cartsService.deleteCartById(idCart)
 
-        let carts = await daoCart.get()
+        let carts = await cartsService.getCarts()
         res.setHeader("Content-Type", "application/json")
         res.status(200).json({
             carts
@@ -133,13 +135,13 @@ export default class cartManager {
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await daoCart.getById(idCart)
+        let cart = await cartsService.getCartById(idCart)
         if (cart) {
             let productIndex = cart.products.findIndex(prod => prod.productId == idProd)
             if (productIndex != -1) {
                 cart.products.splice(productIndex, 1)
 
-                let carts = await daoCart.updateOne(idCart,cart)
+                let carts = await cartsService.updateCartById(idCart, cart)
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json({
                     carts

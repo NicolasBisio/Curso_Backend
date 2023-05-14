@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { config } from '../config/config.js'
+import { DB } from './singleton.js'
 
 const PERSISTENCIA = config.app.PERSISTENCIA
 
@@ -16,8 +17,8 @@ export const setDao = async () => {
             break;
 
         case 'DB':
-            mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
-                .then(conn => console.log('Conexión a la BD establecida.'))
+            const conectar =()=> DB.conectar()
+            conectar() 
 
             let { CartsDBDao } = await import('./cartsDBDao.js')
             let { ProductsDBDao } = await import('./productsDBDao.js')

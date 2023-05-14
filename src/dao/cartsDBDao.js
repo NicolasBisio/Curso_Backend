@@ -1,29 +1,49 @@
 import { cartsModel } from './models/carts.models.js';
 import mongoose from 'mongoose';
 
-
 export class CartsDBDao {
     constructor() {
     }
 
     async get() {
-        return await cartsModel.find()
+        try {
+            return await cartsModel.find()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async getById(idCart) {
-        return await cartsModel.findOne({ _id: idCart })
+        try {
+            return await cartsModel.findOne({ _id: idCart })
+        } catch (error) {
+            console.log(error)
+            return undefined
+        }
     }
 
     async post(cart) {
-        return await cartsModel.create(cart)
+        try {
+            return await cartsModel.create(cart)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async updateOne(idCart, cart) {
-        return await cartsModel.updateOne({ _id: idCart }, cart)
+        try {
+            return await cartsModel.updateOne({ _id: idCart }, cart)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async deleteOne(idCart) {
-        return await cartsModel.deleteOne({ _id: idCart });
+        try {
+            return await cartsModel.deleteOne({ _id: idCart });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }
