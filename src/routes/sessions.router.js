@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { usersModel } from '../dao/models/users.models.js';
-import { createHash, isValidPassword } from "../utils/utils.js"
 
 const router = Router();
 
@@ -63,4 +62,4 @@ router.get('/logout', (req, res) => {
     });
 })
 
-export default router;
+export { router as sessionsRouter}

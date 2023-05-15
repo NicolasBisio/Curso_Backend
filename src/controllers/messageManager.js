@@ -1,10 +1,10 @@
 import messagesModel from '../dao/models/messages.models.js';
 
-class messageManager {
+class MessageManager {
     async addMessage(message, req, res) {
         let messageToCreate = message;
         await messagesModel.create(messageToCreate);
     }
 }
 
-export default messageManager;
+export const messageManager = new MessageManager()

@@ -1,13 +1,8 @@
 import { productsModel } from '../dao/models/products.models.js';
 import { cartsModel } from '../dao/models/carts.models.js';
+import { productsService } from '../services/index.js';
 
-import ProductManagerDB from "./productManager.js";
-const product = new ProductManagerDB
-
-import cartManagerDB from "./cartManager.js";
-const cart = new cartManagerDB
-
-export default class ViewsManagerDB {
+class ViewsManager {
 
     async getProducts(req, res) {
         let products;
@@ -51,7 +46,7 @@ export default class ViewsManagerDB {
     }
 
     async getProductsRealTime(req, res) {
-        let products = await product.getProducts();
+        let products = await productsService.getProducts()
         res.status(200).render('realTimeProducts', {
             products
         })
@@ -93,3 +88,5 @@ export default class ViewsManagerDB {
     }
 
 }
+
+export const viewsManager = new ViewsManager()

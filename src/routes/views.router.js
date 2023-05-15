@@ -1,8 +1,7 @@
 import { Router } from 'express';
-const router = Router();
+import { viewsManager } from '../controllers/index.js';
 
-import ViewsManagerDB from "../controllers/viewsManagerDB.js";
-const view = new ViewsManagerDB
+const router = Router();
 
 const auth = (req, res, next) => {
     if (!req.session.user) return res.redirect('/login')
@@ -14,18 +13,18 @@ const auth2 = (req, res, next) => {
     next();
 }
 
-router.get('/products', view.getProducts)
+router.get('/products', viewsManager.getProducts)
 
-router.get('/cart/:cid', view.getCartById)
+router.get('/cart/:cid', viewsManager.getCartById)
 
-router.get('/realtimeproducts', view.getProductsRealTime)
+router.get('/realtimeproducts', viewsManager.getProductsRealTime)
 
-router.get('/chat', view.getChat)
+router.get('/chat', viewsManager.getChat)
 
-router.get('/', auth, view.getHome)
+router.get('/', auth, viewsManager.getHome)
 
-router.get('/signUp', auth2, view.signUp)
+router.get('/signUp', auth2, viewsManager.signUp)
 
-router.get('/login', auth2, view.login)
+router.get('/login', auth2, viewsManager.login)
 
-export default router;
+export { router as viewsRouter}

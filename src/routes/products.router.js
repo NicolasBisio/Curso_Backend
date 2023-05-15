@@ -1,28 +1,18 @@
 import { Router } from "express";
-import productManager from "../controllers/productManager.js";
+import { productManager } from "../controllers/index.js";
 
 const router = Router();
 
-const product = new productManager
+router.get('/', productManager.getProducts)
 
-//Llamar al controlador de MongoDB
-// import ProductManagerDB from "../controllers/productManagerDB.js";
-// const product = new ProductManagerDB
+router.get('/:pid', productManager.getProductById)
 
-// Llamando al controlador de FileSystem
-// import ProductManager from "../controllers/productManagerFS.js";
-// const product = new ProductManager("./src/productos.json")
+router.post("/", productManager.addProduct)
 
-router.get('/', product.getProducts)
+router.post("/massive", productManager.addProductsMassive)
 
-router.get('/:pid', product.getProductById)
+router.put("/:pid", productManager.updateProduct)
 
-router.post("/", product.addProduct)
+router.delete("/:pid", productManager.deleteProduct)
 
-router.post("/massive", product.addProductsMassive)
-
-router.put("/:pid", product.updateProduct)
-
-router.delete("/:pid", product.deleteProduct)
-
-export default router;
+export { router as productsRouter}

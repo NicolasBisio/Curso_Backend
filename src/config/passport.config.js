@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import github from 'passport-github2';
 import { usersModel } from '../dao/models/users.models.js';
-import { createHash, isValidPassword } from "../utils/utils.js"
+import { hashUtils } from "../utils/index.js"
 
 export const inicializaEstrategias = () => {
 
@@ -62,7 +62,7 @@ export const inicializaEstrategias = () => {
 
             let newUser = await usersModel.create({
                 name, last_name, email: username, age,
-                password: createHash(password), role
+                password: hashUtils.createHash(password), role
             })
 
             return done(null, newUser);
@@ -82,7 +82,7 @@ export const inicializaEstrategias = () => {
             let usuario = await usersModel.findOne({ email: username })
 
             if (!usuario) return done(null, false);
-            if (!isValidPassword(password, usuario)) return done(null, false);
+            if (!hashUtils.isValidPassword(password, usuario)) return done(null, false);
 
             return done(null, usuario);
 
@@ -100,4 +100,4 @@ export const inicializaEstrategias = () => {
         done(null, usuario);
     });
 
-} // fin inicalizaEstrategias
+}

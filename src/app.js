@@ -9,12 +9,9 @@ import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { inicializaEstrategias } from './config/passport.config.js';
 
-import viewsRouter from './routes/views.router.js';
-import productsRouter from './routes/products.router.js';
-import cartsRouter from './routes/carts.router.js';
-import sessionsRouter from './routes/sessions.router.js';
+import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './routes/index.js'
 
-import messageManager from './controllers/messageManager.js';
+import { messageManager } from './controllers/index.js';
 
 const PORT = config.app.PORT
 
@@ -84,6 +81,6 @@ serverSockets.on('connection', (socket) => {
 
 })
 
-export {messages};
+export { messages };
 
 serverHttp.on('error', (error) => console.log(error));

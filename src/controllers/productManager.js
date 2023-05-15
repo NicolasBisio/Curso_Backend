@@ -1,6 +1,6 @@
 import { productsService } from '../services/index.js';
 
-export default class ProductManager {
+class ProductManager {
 
     async getProducts(req, res) {
         let products;
@@ -140,3 +140,5 @@ export default class ProductManager {
     }
 
 }
+
+export const productManager = new ProductManager()

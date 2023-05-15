@@ -1,6 +1,6 @@
 import { cartsService, productsService } from '../services/index.js';
 
-export default class cartManager {
+class CartManager {
     constructor() {
         this.getCarts = this.getCarts.bind(this);
         this.addCart = this.addCart.bind(this);
@@ -161,3 +161,5 @@ export default class cartManager {
     }
 
 }
+
+export const cartManager = new CartManager()
