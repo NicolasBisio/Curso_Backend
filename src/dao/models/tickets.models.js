@@ -1,24 +1,21 @@
 import { Schema, model } from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
 
-const productsCollection = 'products'
+const ticketsCollection = 'tickets'
 
-const productsSchema = new Schema({
-    code: {
+const ticketsSchema = new Schema(
+    {
+      code: {
         type: String,
-        unique: [true, `El código debe ser único en la DB`]            
+        unique: true,
+      },
+      amount: Number,
+      purchaser: String
     },
-    purchase_datetime: {
-        type: String,            
-    },
-    amount: {
-        type: Number,            
-    },
-    purchaser: {
-        type: String,            
+    {
+      timestamps: {
+        createdAt: "purchase_datetime",
+      },
     }
-})
+  );
 
-productsSchema.plugin(mongoosePaginate)
-
-export const productsModel = model(productsCollection, productsSchema);
+export const ticketsModel = model(ticketsCollection, ticketsSchema);

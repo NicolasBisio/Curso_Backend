@@ -15,7 +15,7 @@ export class CartsDBDao {
 
     async getById(idCart) {
         try {
-            return await cartsModel.findOne({ _id: idCart })
+            return await cartsModel.findOne({ _id: idCart }).populate('products.productId')
         } catch (error) {
             console.log(error)
             return undefined

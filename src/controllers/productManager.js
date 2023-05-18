@@ -1,4 +1,4 @@
-import { productsService } from '../services/index.js';
+import { productsService, usersService } from '../services/index.js';
 
 class ProductManager {
 
@@ -28,6 +28,17 @@ class ProductManager {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
             productById
+        })
+    }
+
+    async getProductByTitle(req, res) {
+        let title = req.params.title;
+
+        let productByTitle = await productsService.getProductByTitle(title)
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json({
+            productByTitle
         })
     }
 

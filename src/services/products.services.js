@@ -7,7 +7,7 @@ export class ProductsService {
         return await this.dao.get()
     }
 
-    async getProductsByTitle(title) {
+    async getProductByTitle(title) {
         let products = await this.dao.get()
         let productByTitle = products.find(prod => prod.title == title)
         return productByTitle

@@ -36,7 +36,7 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce',
-        ttl: 60
+        ttl: 600
     })
 }))
 inicializaEstrategias();

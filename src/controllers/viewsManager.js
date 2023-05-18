@@ -53,13 +53,13 @@ class ViewsManager {
     }
 
     async getCartById(req, res) {
-        let id = req.params.cid;
-        let cartById = await cartsModel.find({ _id: id }).populate('products.productId')
+        let idCart = req.params.cid;
+        let cartById = await cartsModel.find({ _id: idCart }).populate('products.productId')
 
         if (cartById) {
             res.setHeader('Content-Type', 'text/html');
             res.status(200).render('carts', {
-                id, cartById
+                idCart, cartById
             })
         } else {
             res.setHeader('Content-Type', 'application/json');

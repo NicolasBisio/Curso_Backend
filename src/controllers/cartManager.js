@@ -64,18 +64,18 @@ class CartManager {
 
         const prodDB = await productsService.getProductById(idProd)
 
-        if(!prodDB) return res.status(400).send(`No existe un producto con id ${idProd}.`)
+        if (!prodDB) return res.status(400).send(`No existe un producto con id ${idProd}.`)
 
         cart = await cartsService.getCartById(idCart)
 
         if (!cart) return res.status(400).send(`No existe un carrito con id ${idCart}.`)
 
         let indexProduct = cart.products.findIndex(prod => prod.productId == idProd)
-                if (indexProduct == -1) {
-                    cart.products.push(newProduct)
-                } else {
-                    cart.products[indexProduct].quantity++
-                }
+        if (indexProduct == -1) {
+            cart.products.push(newProduct)
+        } else {
+            cart.products[indexProduct].quantity++
+        }
 
         await cartsService.updateCartById(idCart, cart)
         res.setHeader("Content-Type", "application/json")

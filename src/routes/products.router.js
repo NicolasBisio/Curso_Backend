@@ -7,6 +7,8 @@ router.get('/', productManager.getProducts)
 
 router.get('/:pid', productManager.getProductById)
 
+router.get('/title/:title', productManager.getProductByTitle)
+
 router.post("/", productManager.addProduct)
 
 router.post("/massive", productManager.addProductsMassive)

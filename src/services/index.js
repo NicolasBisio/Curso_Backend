@@ -8,3 +8,6 @@ const daoProduct = dao.products
 
 export const productsService = new ProductsService(daoProduct)
 export const cartsService = new CartsService(daoCart)
+export { usersService } from './users.services.js';
+
+
