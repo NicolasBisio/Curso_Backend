@@ -1,65 +1,26 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { usersService } from '../services/users.services.js';
+import { sessionsManager } from '../controllers/index.js';
 
 const router = Router();
 
-router.get('/current', passport.authenticate('login', { failureRedirect: '/login' }), async (req, res) => {
-    let userByEmail = await usersService.getUserByEmail(req.user.email);
-    if (result) {
-        return res.status(200).send({
-            userByEmail
-        });
-    } else {
-        return res.status(500).send({
-            message: 'No se pudo cargar la información del usuario.'
-        });
-    }
-})
+const auth = (req, res, next) => {
+    if (!req.session.user) return res.redirect('/loginCurrent')
+    next();
+}
 
-router.get('/github', passport.authenticate('github', {}), (req, res) => {
+router.get('/current', auth, sessionsManager.getCurrentUser)
 
-})
+router.get('/github', passport.authenticate('github', {}), sessionsManager.github)
 
-router.get('/callbackGithub', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+router.get('/callbackGithub', passport.authenticate('github', { failureRedirect: '/login' }), sessionsManager.callbackGithub)
 
-    req.session.usuario = {
-        nombre: req.user.nombre,
-        apellido: req.user.apellido,
-        email: req.user.email,
-        edad: req.user.edad
-    }
+router.post('/signUp', passport.authenticate('signUp', { failureRedirect: '/signUp', successRedirect: '/login' }), sessionsManager.signUp)
 
-    res.redirect('/');
+router.post('/login', passport.authenticate('login', { failureRedirect: '/login' }), sessionsManager.login)
 
-})
+router.post('/loginCurrent', passport.authenticate('login', { failureRedirect: '/loginCurrent' }), sessionsManager.loginCurrent)
 
-router.post('/signUp', passport.authenticate('signUp', { failureRedirect: '/signUp', successRedirect: '/login' }), async (req, res) => {
-
-})
-
-router.post('/login', passport.authenticate('login', { failureRedirect: '/login' }), async (req, res) => {
-
-    req.session.user = {
-        name: req.user.name,
-        last_name: req.user.last_name,
-        email: req.user.email,
-        age: req.user.age,
-        role: req.user.role
-    }
-
-    res.redirect('/products');
-
-})
-
-router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            res.sendStatus(500);
-        } else {
-            res.redirect('/login');
-        }
-    });
-})
+router.get('/logout', sessionsManager.logout)
 
 export { router as sessionsRouter }

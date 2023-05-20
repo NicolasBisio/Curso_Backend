@@ -9,5 +9,3 @@ export class UsersDto {
       this.cart = user.cart;
     }
   }
-
-// export const usersDto = new UsersDto()

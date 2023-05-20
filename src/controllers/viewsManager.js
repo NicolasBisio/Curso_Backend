@@ -87,6 +87,11 @@ class ViewsManager {
         res.status(200).render('login')
     }
 
+    loginCurrent(req, res) {
+        res.setHeader('Content-Type', 'text/html');
+        res.status(200).render('loginCurrent')
+    }
+
 }
 
 export const viewsManager = new ViewsManager()

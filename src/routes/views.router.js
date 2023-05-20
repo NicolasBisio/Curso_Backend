@@ -13,6 +13,11 @@ const auth2 = (req, res, next) => {
     next();
 }
 
+const authCurrent = (req, res, next) => {
+    if (req.session.user) return res.redirect('/api/sessions/current')
+    next();
+}
+
 router.get('/products', viewsManager.getProducts)
 
 router.get('/cart/:cid', viewsManager.getCartById)
@@ -26,5 +31,7 @@ router.get('/', auth, viewsManager.getHome)
 router.get('/signUp', auth2, viewsManager.signUp)
 
 router.get('/login', auth2, viewsManager.login)
+
+router.get('/loginCurrent', authCurrent, viewsManager.loginCurrent)
 
 export { router as viewsRouter}
