@@ -1,4 +1,5 @@
-import { cartsService, productsService } from '../services/index.js';
+import { cartsService, productsService, ticketsService } from '../services/index.js';
+import { v4 as uuidv4 } from 'uuid';
 
 class CartManager {
     constructor() {
@@ -84,6 +85,62 @@ class CartManager {
         })
 
     }
+
+    async sendPurchase(req, res) {
+        let idCart = req.params.cid;
+        let email = req.body.email;
+        let outOfStock = [];
+        let productsOrder = [];
+
+        let cart = await cartsService.getCartById(idCart);
+
+        await Promise.all(cart.products.map(async (cartProduct) => {
+            let dbProduct;
+            try {
+                dbProduct = await productsService.getProductById(cartProduct.productId);
+            } catch (error) {
+                console.log(error);
+            }
+
+            if (cartProduct.quantity > dbProduct[0].stock) {
+                outOfStock.push(cartProduct.productId._id);
+            } else {
+                dbProduct[0].stock - cartProduct.quantity;
+                productsOrder.push(dbProduct);
+            }
+        }));
+
+        let amount = 0;
+        productsOrder.forEach((prodDB) => {
+            amount += prodDB[0].price;
+        });
+
+        if (outOfStock.length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                outOfStock
+            });
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                message: 'salió por acá'
+            });
+        }
+
+        let newOrder = {
+            code: uuidv4(),
+            amount: amount,
+            purchaser: email,
+        }
+
+        console.log('newOrder', newOrder)
+
+        ticketsService.createTicket(newOrder)
+
+    }
+
+
+
 
     async updateProductFromCart(req, res) {
         let newQuantity = Number(req.body.quantity)
