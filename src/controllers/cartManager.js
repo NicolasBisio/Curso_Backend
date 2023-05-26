@@ -105,38 +105,39 @@ class CartManager {
             if (cartProduct.quantity > dbProduct[0].stock) {
                 outOfStock.push(cartProduct.productId._id);
             } else {
-                dbProduct[0].stock - cartProduct.quantity;
+                dbProduct[0].stock = dbProduct[0].stock - cartProduct.quantity;
                 productsOrder.push(dbProduct);
             }
         }));
 
         let amount = 0;
         productsOrder.forEach((prodDB) => {
+            let prodDBId = toString(prodDB[0]._id)
+            productsService.updateProductById(prodDBId, prodDB)          
             amount += prodDB[0].price;
         });
-
-        if (outOfStock.length > 0) {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json({
-                outOfStock
-            });
-        } else {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json({
-                message: 'salió por acá'
-            });
-        }
 
         let newOrder = {
             code: uuidv4(),
             amount: amount,
             purchaser: email,
         }
-
-        console.log('newOrder', newOrder)
-
+        
         ticketsService.createTicket(newOrder)
 
+        if (outOfStock.length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                message: 'Productos sin stock:',
+                outOfStock
+            });
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                message: 'Compra finalizada exitosamente'
+            });
+        }
+        
     }
 
 
