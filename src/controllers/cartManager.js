@@ -113,7 +113,7 @@ class CartManager {
         let amount = 0;
         productsOrder.forEach((prodDB) => {
             let prodDBId = prodDB[0]._id.toString()
-            productsService.updateProductById(prodDBId, prodDB)          
+            productsService.updateProductById(prodDBId, prodDB[0])          
             amount += prodDB[0].price;
         });
 

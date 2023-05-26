@@ -1,5 +1,4 @@
 import { cartsModel } from './models/carts.models.js';
-import mongoose from 'mongoose';
 
 export class CartsDBDao {
     constructor() {
