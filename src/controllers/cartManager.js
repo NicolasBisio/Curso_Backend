@@ -111,9 +111,13 @@ class CartManager {
         }));
 
         let amount = 0;
-        productsOrder.forEach((prodDB) => {
+
+        productsOrder.forEach(async (prodDB) => {
+
             let prodDBId = prodDB[0]._id.toString()
-            productsService.updateProductById(prodDBId, prodDB[0])          
+            await productsService.updateProductById(prodDBId, prodDB[0])
+            await cartsService.deleteProductFromCart(idCart, prodDB[0])
+
             amount += prodDB[0].price;
         });
 
@@ -122,7 +126,7 @@ class CartManager {
             amount: amount,
             purchaser: email,
         }
-        
+
         ticketsService.createTicket(newOrder)
 
         if (outOfStock.length > 0) {
@@ -137,11 +141,8 @@ class CartManager {
                 message: 'Compra finalizada exitosamente'
             });
         }
-        
+
     }
-
-
-
 
     async updateProductFromCart(req, res) {
         let newQuantity = Number(req.body.quantity)

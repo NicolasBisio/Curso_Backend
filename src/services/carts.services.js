@@ -22,4 +22,10 @@ export class CartsService {
     async deleteCartById(idCart) {
         return await this.dao.deleteOne(idCart)
     }
+
+    async deleteProductFromCart(idCart, idProd) {
+        let productToDelete = { $pull: { products: { productId: idProd } } }
+        return await this.dao.updateOne(idCart, productToDelete)
+    }
+    
 }
