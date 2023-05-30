@@ -1,4 +1,5 @@
 import { productsService, usersService } from '../services/index.js';
+import { generateFakeProduct } from '../utils/utils.js';
 
 class ProductManager {
 
@@ -41,6 +42,18 @@ class ProductManager {
             productByTitle
         })
     }
+
+    async getFakeProducts(req, res){
+        let fakeProducts = []
+        for(let i=0; i<101; i++){
+            fakeProducts.push(generateFakeProduct())
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).json({
+            fakeProducts
+        })
+    }   
 
     async addProduct(req, res) {
         let productToCreate = req.body;

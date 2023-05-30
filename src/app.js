@@ -12,11 +12,11 @@ import { inicializaEstrategias } from './config/passport.config.js';
 import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './routes/index.js'
 
 import { messageManager } from './controllers/index.js';
+import { generateFakeProduct } from './utils/utils.js';
 
 const PORT = config.app.PORT
 
 const app = express()
-
 
 app.engine('handlebars', engine({
     runtimeOptions: {

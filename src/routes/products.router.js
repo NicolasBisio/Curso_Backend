@@ -9,6 +9,8 @@ router.get('/:pid', productManager.getProductById)
 
 router.get('/title/:title', productManager.getProductByTitle)
 
+router.get('/fake/mockingproducts', productManager.getFakeProducts)
+
 router.post("/", productManager.addProduct)
 
 router.post("/massive", productManager.addProductsMassive)
