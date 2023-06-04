@@ -1,3 +1,4 @@
+import { customError, errorCodes, cartsErrors, productsErrors } from '../errors/index.js';
 import { cartsService, productsService, ticketsService } from '../services/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,11 +14,23 @@ class CartManager {
     }
 
     async getCarts(req, res) {
-        let carts = await cartsService.getCarts()
-        res.setHeader("Content-Type", "application/json")
-        res.status(200).json({
-            carts
-        })
+        let carts;
+        try {
+            carts = await cartsService.getCarts()
+
+            if (carts) {
+                res.setHeader("Content-Type", "application/json")
+                res.status(200).json({
+                    carts
+                })
+            } else {
+                customError.customError('DB Error', cartsErrors.getCartsError(), errorCodes.ERROR_DB)
+            }
+
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
     }
 
@@ -36,20 +49,24 @@ class CartManager {
     }
 
     async getCartById(req, res) {
-        let idCart = req.params.cid
-        let cartById = await cartsService.getCartById(idCart)
+        let idCart = req.params.cid;
+        let cartById;
 
-        if (cartById) {
-            res.setHeader("Content-Type", "application/json")
-            res.status(200).json({
-                cartById
-            })
-        } else {
-            res.setHeader("Content-Type", "application/json")
-            res.status(400).json({
-                message: `No existe el carrito con Id '${idCart}'`
-            })
-        }
+        // try {
+            cartById = await cartsService.getCartById(idCart)
+            if (cartById) {
+                res.setHeader("Content-Type", "application/json")
+                res.status(200).json({
+                    cartById
+                })
+            } else {
+                customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+            }
+
+        // } catch (error) {
+        //     console.log(error)
+        //     return res.status(error.code).json({ message: error.message })
+        // }
 
     }
 
@@ -57,21 +74,31 @@ class CartManager {
         let idCart = req.params.cid;
         let idProd = req.params.pid;
         let cart;
+        let prodDB;
 
         const newProduct = {
             productId: (idProd),
             quantity: 1
         }
 
-        const prodDB = await productsService.getProductById(idProd)
+        try {
+            prodDB = await productsService.getProductById(idProd)
+            if (!prodDB) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
 
-        if (!prodDB) return res.status(400).send(`No existe un producto con id ${idProd}.`)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
-        cart = await cartsService.getCartById(idCart)
+        try {
+            cart = await cartsService.getCartById(idCart)
+            if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
-        if (!cart) return res.status(400).send(`No existe un carrito con id ${idCart}.`)
-
-        let indexProduct = cart.products.findIndex(prod => prod.productId == idProd)
+        let indexProduct = cart.products.findIndex(prod => prod.productId._id.toString() == idProd)
         if (indexProduct == -1) {
             cart.products.push(newProduct)
         } else {
@@ -89,10 +116,17 @@ class CartManager {
     async sendPurchase(req, res) {
         let idCart = req.params.cid;
         let email = req.body.email;
+        let cart;
         let outOfStock = [];
         let productsOrder = [];
 
-        let cart = await cartsService.getCartById(idCart);
+        try {
+            cart = await cartsService.getCartById(idCart)
+            if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
         await Promise.all(cart.products.map(async (cartProduct) => {
             let dbProduct;
@@ -132,13 +166,13 @@ class CartManager {
         if (outOfStock.length > 0) {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({
-                message: 'Productos sin stock:',
+                message: 'Products out of stock:',
                 outOfStock
             });
         } else {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({
-                message: 'Compra finalizada exitosamente'
+                message: 'Order sent succesfully.'
             });
         }
 
@@ -146,57 +180,86 @@ class CartManager {
 
     async updateProductFromCart(req, res) {
         let newQuantity = Number(req.body.quantity)
+        let cart;
         let idCart = req.params.cid
         let idProd = req.params.pid
 
-        let cart = await cartsService.getCartById(idCart)
-        if (cart) {
-            let product = cart.products.find(item => item.productId == idProd)
-            if (product) {
-                product.quantity = newQuantity;
-                let updatedCart = await cartsService.updateCartById(idCart, cart)
-
-                res.setHeader('Content-Type', 'application/json');
-                res.status(200).json({
-                    updatedCart
-                })
-            } else {
-                res.setHeader("Content-Type", "application/json")
-                res.status(400).json({
-                    message: `No existe un producto con Id '${idProd}'.`
-                })
-            }
-        } else {
-            res.setHeader("Content-Type", "application/json")
-            res.status(400).json({
-                message: `No existe un carrito con Id '${idCart}'.`
-            })
+        try {
+            cart = await cartsService.getCartById(idCart)
+            if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
         }
-    }
 
-    async deleteCart(req, res) {
-        let idCart = req.params.cid
-        let cart = await cartsService.getCartById(idCart)
+        let product = cart.products.find(prod => prod.productId._id.toString() == idProd)
 
-        if (!cart) return res.status(400).send(`No existe un carrito con id ${idCart}.`)
+        try {
+            if (!product) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
+            product.quantity = newQuantity;
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
-        await cartsService.deleteCartById(idCart)
+        let updatedCart = await cartsService.updateCartById(idCart, cart)
 
-        let carts = await cartsService.getCarts()
-        res.setHeader("Content-Type", "application/json")
+        res.setHeader('Content-Type', 'application/json');
         res.status(200).json({
-            carts
+            updatedCart
         })
 
     }
 
-    async deleteProductFromCart(req, res) {
-        let idCart = req.params.cid
-        let idProd = req.params.pid
+    async deleteCart(req, res) {
+        let idCart = req.params.cid;
+        let cart;
 
-        let cart = await cartsService.getCartById(idCart)
-        if (cart) {
-            let productIndex = cart.products.findIndex(prod => prod.productId == idProd)
+        try {
+            cart = await cartsService.getCartById(idCart)
+            if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+
+        await cartsService.deleteCartById(idCart)
+
+        let carts;
+        try {
+            carts = await cartsService.getCarts()
+
+            if (carts) {
+                res.setHeader("Content-Type", "application/json")
+                res.status(200).json({
+                    carts
+                })
+            } else {
+                customError.customError('DB Error', cartsErrors.getCartsError(), errorCodes.ERROR_DB)
+            }
+
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+
+    }
+
+    async deleteProductFromCart(req, res) {
+        let idCart = req.params.cid;
+        let idProd = req.params.pid;
+        let cart;
+
+        try {
+            cart = await cartsService.getCartById(idCart)
+            if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+
+        let productIndex = cart.products.findIndex(prod => prod.productId._id.toString() == idProd)
+        try {
             if (productIndex != -1) {
                 cart.products.splice(productIndex, 1)
 
@@ -206,17 +269,13 @@ class CartManager {
                     carts
                 })
             } else {
-                res.setHeader("Content-Type", "application/json")
-                res.status(400).json({
-                    message: `No existe un producto con Id '${idProd}'.`
-                })
+                customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
             }
-        } else {
-            res.setHeader("Content-Type", "application/json")
-            res.status(400).json({
-                message: `No existe un carrito con Id '${idCart}'.`
-            })
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
         }
+
     }
 
 }

@@ -1,0 +1,6 @@
+export const errorCodes={
+    ERROR_ARGUMENTS: 400,
+    ERROR_AUTHENTICATION: 401,
+    ERROR_AUTHORIZATION: 403,
+    ERROR_DB: 500
+}

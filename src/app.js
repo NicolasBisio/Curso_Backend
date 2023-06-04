@@ -12,7 +12,8 @@ import { inicializaEstrategias } from './config/passport.config.js';
 import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './routes/index.js'
 
 import { messageManager } from './controllers/index.js';
-import { generateFakeProduct } from './utils/utils.js';
+import { errorMiddleware } from './middlewares/error.middleware.js';
+
 
 const PORT = config.app.PORT
 
@@ -35,7 +36,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://nbbisio:35584534@cluster0.bkyuey1.mongodb.net/?retryWrites=true&w=majority&dbName=ecommerce',
+        mongoUrl: config.database.MONGOURL, dbName: config.database.DB,
         ttl: 600
     })
 }))
@@ -56,6 +57,8 @@ app.get('*', (req, res) => {
         message: `Not Found`
     })
 })
+
+app.use(errorMiddleware)
 
 const serverHttp = app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)

@@ -1,3 +1,4 @@
+import { customError, errorCodes, productsErrors } from '../errors/index.js';
 import { productsService, usersService } from '../services/index.js';
 import { generateFakeProduct } from '../utils/utils.js';
 
@@ -7,16 +8,18 @@ class ProductManager {
         let products;
         try {
             products = await productsService.getProducts()
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json({
-                products
-            })
+            if (products) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json({
+                    products
+                })
+            } else {
+                customError.customError('DB Error', productsErrors.getProductsError(), errorCodes.ERROR_DB)
+            }
 
         } catch (error) {
-            res.setHeader('Content-Type', 'application/json');
-            return res.status(500).json({
-                mensaje: `Error al obtener los productos de la DB`
-            })
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
         }
 
     }
@@ -24,28 +27,50 @@ class ProductManager {
     async getProductById(req, res) {
         let idProd = req.params.pid;
 
-        let productById = await productsService.getProductById(idProd)
+        try {
+            let productById = await productsService.getProductById(idProd)
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            productById
-        })
+            if (productById) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json({
+                    productById
+                })
+            } else {
+                customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
+            }
+
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
     }
+
 
     async getProductByTitle(req, res) {
         let title = req.params.title;
 
-        let productByTitle = await productsService.getProductByTitle(title)
+        try {
+            let productByTitle = await productsService.getProductByTitle(title)
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            productByTitle
-        })
+            if (productByTitle) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json({
+                    productByTitle
+                })
+            } else {
+                customError.customError('Invalid Product title', productsErrors.getProductByTitleError(title), errorCodes.ERROR_ARGUMENTS)
+            }
+
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+
     }
 
-    async getFakeProducts(req, res){
+    async getFakeProducts(req, res) {
         let fakeProducts = []
-        for(let i=0; i<101; i++){
+        for (let i = 0; i < 101; i++) {
             fakeProducts.push(generateFakeProduct())
         }
 
@@ -53,50 +78,53 @@ class ProductManager {
         return res.status(200).json({
             fakeProducts
         })
-    }   
+    }
 
     async addProduct(req, res) {
         let productToCreate = req.body;
 
-        let products = await productsService.getProducts()
+        try {
+            let products = await productsService.getProducts()
 
-        if (productToCreate.title &&
-            productToCreate.description &&
-            productToCreate.price &&
-            productToCreate.thumbnail &&
-            productToCreate.code &&
-            productToCreate.stock) {
-                
-            let repeatedProduct = products.find(prod => prod.code == productToCreate.code)
+            if (productToCreate.title &&
+                productToCreate.description &&
+                productToCreate.price &&
+                productToCreate.thumbnail &&
+                productToCreate.code &&
+                productToCreate.stock) {
 
-            if (repeatedProduct) {
-                res.setHeader("Content-Type", "aplication/json")
-                return res.status(400).json({
-                    message: `El producto ${productToCreate.title} ya existe.`
-                })
-            } else {
-                productToCreate = {
-                    title: productToCreate.title,
-                    description: productToCreate.description,
-                    price: productToCreate.price,
-                    thumbnail: productToCreate.thumbnail,
-                    code: productToCreate.code,
-                    stock: productToCreate.stock,
+                let repeatedProduct = products.find(prod => prod.code == productToCreate.code)
+
+                if (repeatedProduct) {
+                    res.setHeader("Content-Type", "aplication/json")
+                    return res.status(400).json({
+                        message: `El producto ${productToCreate.title} ya existe.`
+                    })
+                } else {
+                    productToCreate = {
+                        title: productToCreate.title,
+                        description: productToCreate.description,
+                        price: productToCreate.price,
+                        thumbnail: productToCreate.thumbnail,
+                        code: productToCreate.code,
+                        stock: productToCreate.stock,
+                    }
+
+                    let productCreated = await productsService.createProduct(productToCreate)
+
+                    res.setHeader("Content-Type", "aplication/json")
+                    res.status(200).json({
+                        productCreated
+                    })
                 }
 
-                let productCreated = await productsService.createProduct(productToCreate)
-
-                res.setHeader("Content-Type", "aplication/json")
-                res.status(200).json({
-                    productCreated
-                })
+            } else {
+                customError.customError('Incomplete or invalid arguments', productsErrors.postNewProductError(productToCreate), errorCodes.ERROR_ARGUMENTS)
             }
 
-        } else {
-            res.setHeader("Content-Type", "aplication/json")
-            return res.status(400).json({
-                message: `Debe completar todos los campos.`
-            })
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
         }
 
     }
@@ -134,7 +162,7 @@ class ProductManager {
 
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
-            message: `Productos cargados exitosamente.`
+            message: `Products added succesfully.`
         })
 
         process.exit();
@@ -143,24 +171,52 @@ class ProductManager {
 
     async updateProduct(req, res) {
         let idProd = req.params.pid;
-
         let productToUpdate = req.body;
-        let updatedProduct = await productsService.updateProductById(idProd, productToUpdate)
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            updatedProduct
-        })
+        try {
+            if (productToUpdate.title &&
+                productToUpdate.description &&
+                productToUpdate.price &&
+                productToUpdate.thumbnail &&
+                productToUpdate.code &&
+                productToUpdate.stock) {
+
+                let updatedProduct = await productsService.updateProductById(idProd, productToUpdate)
+
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json({
+                    updatedProduct
+                })
+
+            } else {
+                customError.customError('Incomplete or invalid arguments', productsErrors.postNewProductError(productToUpdate), errorCodes.ERROR_ARGUMENTS)
+            }
+
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
     }
 
     async deleteProduct(req, res) {
         let idProd = req.params.pid;
-        let products = await productsService.deleteProductById(idProd);
+        let products;
+        try {
+            products = await productsService.deleteProductById(idProd);
+            if (products) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json({
+                    products
+                })
+            } else {
+                customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
+            }
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({
-            products
-        })
+        } catch (error) {
+            console.log(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+
     }
 
 }
