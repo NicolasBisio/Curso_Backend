@@ -1,6 +1,7 @@
 import { productsModel } from '../dao/models/products.models.js';
 import { cartsModel } from '../dao/models/carts.models.js';
 import { productsService } from '../services/index.js';
+import { logger } from '../utils/index.js';
 
 class ViewsManager {
 

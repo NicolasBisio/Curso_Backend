@@ -13,11 +13,13 @@ import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './rout
 
 import { messageManager } from './controllers/index.js';
 import { errorMiddleware } from './middlewares/error.middleware.js';
+import { logger } from './utils/index.js';
 
 
 const PORT = config.app.PORT
 
 const app = express()
+
 
 app.engine('handlebars', engine({
     runtimeOptions: {
@@ -45,9 +47,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', viewsRouter)
-app.use('/api/products', productsRouter)
-app.use('/api/carts', cartsRouter)
 app.use('/api/sessions', sessionsRouter)
+app.use('/api/carts', cartsRouter)
+app.use('/api/products', productsRouter)
+
+app.use("/loggertest", (req, res) => {
+    logger.fatal('Logger.fatal');
+    logger.error('Logger.error');
+    logger.warning('Logger.warning');
+    logger.info('Logger.info');
+    logger.http('Logger.http');
+    logger.debug('Logger.debug');
+    res.status(200).send('Loggers Ok.')
+  });
 
 app.use(express.static('../public'));
 
@@ -61,7 +73,7 @@ app.get('*', (req, res) => {
 app.use(errorMiddleware)
 
 const serverHttp = app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
+    logger.info(`Example app listening on port ${PORT}`)
 })
 
 const serverSockets = new Server(serverHttp);
@@ -69,10 +81,10 @@ const serverSockets = new Server(serverHttp);
 const messages = []
 
 serverSockets.on('connection', (socket) => {
-    console.log(`Se han conectado, socket id ${socket.id}`)
+    logger.info(`Se han conectado, socket id ${socket.id}`)
 
     socket.on('message', (message) => {
-        console.log(`${message.user} dice ${message.message}`);
+        logger.info(`${message.user} dice ${message.message}`);
 
         const newMessage = new messageManager
 
@@ -86,4 +98,4 @@ serverSockets.on('connection', (socket) => {
 
 export { messages };
 
-serverHttp.on('error', (error) => console.log(error));
+serverHttp.on('error', (error) => logger.fatal(error));

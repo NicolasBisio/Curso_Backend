@@ -1,4 +1,6 @@
+import { logger } from "../utils/index.js";
 import { usersModel } from "./models/users.models.js";
+logger
 import { DB } from './singleton.js'
 
 class UsersDao {
@@ -11,7 +13,7 @@ class UsersDao {
         try {
             return await usersModel.findOne({email})
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 }

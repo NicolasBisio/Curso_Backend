@@ -1,4 +1,5 @@
 import { usersService } from "../services/index.js";
+import { logger } from '../utils/index.js';
 
 class SessionsManager {
 

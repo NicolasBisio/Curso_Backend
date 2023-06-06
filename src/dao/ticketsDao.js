@@ -1,4 +1,5 @@
 import { ticketsModel } from "./models/tickets.models.js";
+import { logger } from "../utils/index.js";
 import { DB } from './singleton.js'
 
 class TicketsDao {
@@ -11,7 +12,7 @@ class TicketsDao {
         try {
             return await ticketsModel.create(ticket)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

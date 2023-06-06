@@ -1,4 +1,5 @@
 import { productsModel } from './models/products.models.js';
+import { logger } from '../utils/index.js';
 
 export class ProductsDBDao {
     constructor() {
@@ -8,7 +9,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.find()
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -16,7 +17,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.find({ _id: idProd })
         } catch (error) {
-            console.log(error)
+            logger.error(error)
             return undefined
         }
     }
@@ -25,7 +26,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.create(product)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -33,7 +34,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.insertMany(products)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -41,7 +42,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.updateOne({ _id: idProd }, product)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -49,7 +50,7 @@ export class ProductsDBDao {
         try {
             return await productsModel.deleteOne({ _id: idProd });
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

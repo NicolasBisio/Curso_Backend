@@ -1,5 +1,6 @@
 import { customError, errorCodes, cartsErrors, productsErrors } from '../errors/index.js';
 import { cartsService, productsService, ticketsService } from '../services/index.js';
+import { logger } from '../utils/index.js'
 import { v4 as uuidv4 } from 'uuid';
 
 class CartManager {
@@ -28,7 +29,7 @@ class CartManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.fatal(error)
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -52,7 +53,7 @@ class CartManager {
         let idCart = req.params.cid;
         let cartById;
 
-        // try {
+        try {
             cartById = await cartsService.getCartById(idCart)
             if (cartById) {
                 res.setHeader("Content-Type", "application/json")
@@ -63,10 +64,10 @@ class CartManager {
                 customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
             }
 
-        // } catch (error) {
-        //     console.log(error)
-        //     return res.status(error.code).json({ message: error.message })
-        // }
+        } catch (error) {
+            logger.error(error)
+            return res.status(error.code).json({ message: error.message })
+        }
 
     }
 
@@ -86,7 +87,8 @@ class CartManager {
             if (!prodDB) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -94,7 +96,8 @@ class CartManager {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -124,7 +127,8 @@ class CartManager {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -133,7 +137,7 @@ class CartManager {
             try {
                 dbProduct = await productsService.getProductById(cartProduct.productId);
             } catch (error) {
-                console.log(error);
+                logger.error(error);
             }
 
             if (cartProduct.quantity > dbProduct[0].stock) {
@@ -172,7 +176,7 @@ class CartManager {
         } else {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({
-                message: 'Order sent succesfully.'
+                message: 'Order sent successfully.'
             });
         }
 
@@ -188,7 +192,8 @@ class CartManager {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -198,7 +203,8 @@ class CartManager {
             if (!product) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
             product.quantity = newQuantity;
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -219,7 +225,8 @@ class CartManager {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -239,7 +246,8 @@ class CartManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.fatal(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -254,7 +262,8 @@ class CartManager {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -272,7 +281,8 @@ class CartManager {
                 customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
             }
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 

@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import { config } from '../config/config.js'
 import { DB } from './singleton.js'
 

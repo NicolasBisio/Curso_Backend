@@ -1,4 +1,5 @@
 import { cartsModel } from './models/carts.models.js';
+import { logger } from '../utils/index.js';
 
 export class CartsDBDao {
     constructor() {
@@ -8,7 +9,7 @@ export class CartsDBDao {
         try {
             return await cartsModel.find()
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -16,7 +17,7 @@ export class CartsDBDao {
         try {
             return await cartsModel.findOne({ _id: idCart }).populate('products.productId')
         } catch (error) {
-            console.log(error)
+            logger.error(error)
             return undefined
         }
     }
@@ -25,7 +26,7 @@ export class CartsDBDao {
         try {
             return await cartsModel.create(cart)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -33,7 +34,7 @@ export class CartsDBDao {
         try {
             return await cartsModel.updateOne({ _id: idCart }, cart)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -41,7 +42,7 @@ export class CartsDBDao {
         try {
             return await cartsModel.deleteOne({ _id: idCart });
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

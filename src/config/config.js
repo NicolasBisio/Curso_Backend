@@ -7,7 +7,8 @@ dotenv.config({
 export const config={
     app:{
         PORT:process.env.PORT,
-        PERSISTENCIA: process.env.PERSISTENCIA
+        PERSISTENCIA: process.env.PERSISTENCIA,
+        ENTORNO: process.env.ENTORNO
     },
     database:{
         MONGOURL: process.env.MONGOURL,

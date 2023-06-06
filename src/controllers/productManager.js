@@ -1,5 +1,6 @@
 import { customError, errorCodes, productsErrors } from '../errors/index.js';
-import { productsService, usersService } from '../services/index.js';
+import { productsService } from '../services/index.js';
+import { logger } from '../utils/index.js';
 import { generateFakeProduct } from '../utils/utils.js';
 
 class ProductManager {
@@ -18,7 +19,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -40,7 +42,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
     }
@@ -62,7 +65,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -123,7 +127,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
@@ -162,7 +167,7 @@ class ProductManager {
 
         res.setHeader('Content-Type', 'application/json');
         res.status(201).json({
-            message: `Products added succesfully.`
+            message: `Products added successfully.`
         })
 
         process.exit();
@@ -193,7 +198,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
     }
@@ -213,7 +219,8 @@ class ProductManager {
             }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
+            res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
         }
 
