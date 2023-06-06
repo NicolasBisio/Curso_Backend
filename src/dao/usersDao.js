@@ -1,6 +1,5 @@
 import { logger } from "../utils/index.js";
 import { usersModel } from "./models/users.models.js";
-logger
 import { DB } from './singleton.js'
 
 class UsersDao {
