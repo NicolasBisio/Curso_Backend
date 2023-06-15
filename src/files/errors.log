@@ -24,3 +24,25 @@
   code: 400,
   level: 'error'
 }
+{
+  info: 'Incomplete or invalid arguments:\n' +
+    "        - title: expected String, recieved 'undefined'.\n" +
+    "        - description: expected String, recieved 'undefined'.\n" +
+    "        - price: expected Number, recieved 'undefined'.\n" +
+    "        - thumbnail: expected String, recieved 'undefined'.\n" +
+    "        - code: expected String, recieved 'undefined'.\n" +
+    "        - stock: expected Number, recieved 'undefined'.",
+  code: 400,
+  level: 'error'
+}
+{
+  info: 'Incomplete or invalid arguments:\n' +
+    "        - title: expected String, recieved 'undefined'.\n" +
+    "        - description: expected String, recieved 'undefined'.\n" +
+    "        - price: expected Number, recieved 'undefined'.\n" +
+    "        - thumbnail: expected String, recieved 'undefined'.\n" +
+    "        - code: expected String, recieved 'undefined'.\n" +
+    "        - stock: expected Number, recieved 'undefined'.",
+  code: 400,
+  level: 'error'
+}

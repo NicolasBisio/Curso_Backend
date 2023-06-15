@@ -1,0 +1,226 @@
+paths:
+  /api/products/:
+    get:
+      summary: Obtiene todos los productos de la base de datos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos fueron obtenidos correctamente desde la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Error interno del servidor
+    post:
+      summary: Genera un nuevo producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/createProduct'
+      responses:
+        "201":
+          description: El producto fue generado correctamente en la base de datos
+        "400":
+          description: Error en los argumentos de la solicitud
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto específico de la base de datos, a partir de su Id
+      tags:
+        - Products
+      responses:
+        "200":
+          description: El producto fue obtenido correctamente desde la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "400":
+          description: Error en los argumentos de la solicitud
+    put:
+      summary: Actualiza un producto específico, a partir de su Id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto que se está solicitando
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProduct'
+      responses:
+        "201":
+          description: El producto fue actualizado correctamente en la base de datos
+        "400":
+          description: Error en los argumentos de la solicitud
+    delete:
+      summary: Elimina un producto específico, a partir de su Id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El producto fue eliminado correctamente de la base de datos
+        "400":
+          description: Error en los argumentos de la solicitud
+  /api/products/title/{title}:
+    get:
+      summary: Obtiene un producto específico de la base de datos, a partir de su título
+      tags:
+        - Products
+      parameters:
+        - name: title
+          in: path
+          required: true 
+          description: Nombre del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El producto fue obtenido correctamente desde la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "400":
+          description: Error en los argumentos de la solicitud
+  /api/products/fake/mockingproducts:
+    get:
+      summary: Obtiene una serie de productos ficticios para utilizar como prueba
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos fueron obtenidos correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Error interno del servidor
+  /api/products/massive:
+    post:
+      summary: Genera un lote masivo de nuevos productos
+      tags:
+        - Products
+      responses:
+        "201":
+          description: Los productos fueron generados correctamente
+        "500":
+          description: Error interno del servidor
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado por MongoDB
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción del producto   
+        price:
+          type: Number
+          description: Precio del producto
+        thumbnail: 
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Código del producto
+        stock: 
+          type: Number
+          description: Stock del producto                                                        
+      example:
+        _id: ObjectId("60acc54545c8e82e0475f73a")
+        title: Zapatillas
+        description: Una para cada pie
+        price: 20000
+        thumbnail: zapas/zapas1.jpg
+        code: 1001
+        stock: 677
+  requestBodies:
+    createProduct:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción del producto   
+        price:
+          type: Number
+          description: Precio del producto
+        thumbnail: 
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Código del producto
+        stock: 
+          type: Number
+          description: Stock del producto                                                        
+      example:
+        title: Zapatillas
+        description: Una para cada pie
+        price: 20000
+        thumbnail: zapas/zapas1.jpg
+        code: 1001
+        stock: 677
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción del producto   
+        price:
+          type: Number
+          description: Precio del producto
+        thumbnail: 
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Código del producto
+        stock: 
+          type: Number
+          description: Stock del producto                                                        
+      example:
+        title: Zapatillas
+        description: Una para cada pie
+        price: 20000
+        thumbnail: zapas/zapas1.jpg
+        code: 1001
+        stock: 677

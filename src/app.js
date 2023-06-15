@@ -7,13 +7,14 @@ import { Server } from 'socket.io';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
+import swaggerUi from 'swagger-ui-express';
 import { inicializaEstrategias } from './config/passport.config.js';
 
 import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './routes/index.js'
 
 import { messageManager } from './controllers/index.js';
 import { errorMiddleware } from './middlewares/error.middleware.js';
-import { logger } from './utils/index.js';
+import { logger, swaggerSpecs } from './utils/index.js';
 
 
 const PORT = config.app.PORT
@@ -50,6 +51,7 @@ app.use('/', viewsRouter)
 app.use('/api/sessions', sessionsRouter)
 app.use('/api/carts', cartsRouter)
 app.use('/api/products', productsRouter)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 app.use("/loggertest", (req, res) => {
     logger.fatal('Logger.fatal');
@@ -59,7 +61,7 @@ app.use("/loggertest", (req, res) => {
     logger.http('Logger.http');
     logger.debug('Logger.debug');
     res.status(200).send('Loggers Ok.')
-  });
+});
 
 app.use(express.static('../public'));
 

@@ -34,7 +34,29 @@ class CartManager {
         }
 
     }
-
+    
+    async getCartById(req, res) {
+        let idCart = req.params.cid;
+        let cartById;
+        
+        try {
+            cartById = await cartsService.getCartById(idCart)
+            if (cartById) {
+                res.setHeader("Content-Type", "application/json")
+                res.status(200).json({
+                    cartById
+                })
+            } else {
+                customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+            }
+            
+        } catch (error) {
+            logger.error(error)
+            return res.status(error.code).json({ message: error.message })
+        }
+        
+    }
+    
     async addCart(req, res) {
         let newCart = {
             products: []
@@ -46,28 +68,6 @@ class CartManager {
         res.status(201).json({
             cart
         })
-
-    }
-
-    async getCartById(req, res) {
-        let idCart = req.params.cid;
-        let cartById;
-
-        try {
-            cartById = await cartsService.getCartById(idCart)
-            if (cartById) {
-                res.setHeader("Content-Type", "application/json")
-                res.status(200).json({
-                    cartById
-                })
-            } else {
-                customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
-            }
-
-        } catch (error) {
-            logger.error(error)
-            return res.status(error.code).json({ message: error.message })
-        }
 
     }
 

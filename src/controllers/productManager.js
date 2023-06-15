@@ -117,7 +117,7 @@ class ProductManager {
                     let productCreated = await productsService.createProduct(productToCreate)
 
                     res.setHeader("Content-Type", "aplication/json")
-                    res.status(200).json({
+                    res.status(201).json({
                         productCreated
                     })
                 }
@@ -189,7 +189,7 @@ class ProductManager {
                 let updatedProduct = await productsService.updateProductById(idProd, productToUpdate)
 
                 res.setHeader('Content-Type', 'application/json');
-                res.status(200).json({
+                res.status(201).json({
                     updatedProduct
                 })
 

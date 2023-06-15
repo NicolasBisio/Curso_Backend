@@ -1,0 +1,208 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene todos los carritos de la base de datos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos fueron obtenidos correctamente desde la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Carts'
+        "500":
+          description: Error interno del servidor
+    post:
+      summary: Genera un nuevo carrito
+      tags:
+        - Carts
+      responses:
+        "201":
+          description: El carrito fue generado correctamente en la base de datos
+        "500":
+          description: Error interno del servidor  
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito específico de la base de datos, a partir de su Id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El carrito fue obtenido correctamente desde la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Carts'
+        "400":
+          description: Error en los argumentos de la solicitud
+    delete:
+      summary: Elimina un carrito específico, a partir de su Id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string 
+      responses:
+        "200":
+          description: El carrito fue eliminado correctamente de la base de datos
+        "400":
+          description: Error en los argumentos de la solicitud
+        "500":
+          description: Error interno del servidor
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Agrega un producto a un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "201":
+          description: El producto fue agregado al carrito correctamente
+        "400":
+          description: Error en los argumentos de la solicitud
+    put:
+      summary: Actualiza el producto de un carrito
+      tags:
+        - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductFromCart'
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El producto fue actualizado correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Carts'
+        "400":
+          description: Error en los argumentos de la solicitud
+    delete:
+      summary: Elimina un producto específico de un carrito, a partir de sus Id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El producto fue eliminado correctamente del carrito
+        "400":
+          description: Error en los argumentos de la solicitud 
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Genera una nueva orden de compra a partir de un carrito
+      tags:
+        - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/sendPurchase'
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: La orden de compra fue generada correctamente. Si llegan a existir productos sin stock, se devuelve un array con sus Id
+        "400":
+          description: Error en los argumentos de la solicitud
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado por MongoDB
+        products:
+          type: array
+          properties:    
+            productId:
+              type: String
+              description: Id del producto requerido
+            quantity:
+              type: Number
+              description: Cantidad de items de ese producto                                                        
+      example:
+        _id: ObjectId("60acc54545c8e82e0475f73a")
+        products:
+          productId: 54acc54545c8e82e0475f7b
+          quantity: 3
+  requestBodies:
+    updateProductFromCart:
+      type: object
+      properties:
+        quantity:
+          type: Number
+          description: Cantidad requerida del producto
+      example:
+        quantity: 15
+    sendPurchase:
+      type: object
+      properties: 
+        email:
+          type: string
+          description: email del usuario que realiza la compra
+      example: 
+        email: test@test.com
