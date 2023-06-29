@@ -1,7 +1,10 @@
 import chai from 'chai'
 import supertest from 'supertest'
-// import { productsModel } from '../src/dao/models/products.models.js';
 import mongoose from 'mongoose';
+import { config } from '../src/config/config.js';
+
+mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
+    .then(conn => logger.info('Conexión a la DB establecida.'))
 
 const expect = chai.expect;
 const requester = supertest('http://localhost:3000')
@@ -58,8 +61,7 @@ describe('Testing endpoints router products', () => {
     describe('Testing endpoint POST /api/products/', () => {
 
         afterEach(async function () {
-            this.timeout(7000)
-            // await productsModel.deleteMany({ code: "abc123" });
+            this.timeout(5000)
             await mongoose.connection.collection('products').deleteMany({ code: 'abc123' })
         })
 
@@ -88,7 +90,7 @@ describe('Testing endpoints router products', () => {
                 description: 'Este es un producto de prueba',
                 price: 250,
                 thumbnail: 'abc.jpg',
-                code: 'abc1234',
+                code: 'abc123',
                 stock: 100,
             }
 
