@@ -1,10 +1,10 @@
 import chai from 'chai'
 import supertest from 'supertest'
 import mongoose from 'mongoose';
-
+import { logger } from '../src/utils/index.js';
 import { config } from '../src/config/config.js';
 
-mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
+await mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
     .then(conn => logger.info('Conexión a la DB establecida.'))
 
 const expect = chai.expect;
@@ -56,7 +56,7 @@ describe('Testing endpoints router carts', function () {
 
             let { body } = await requester.get('/api/carts')
 
-            let idCart = body.cart[0]._id
+            let idCart = body.carts[0]._id
 
             let { statusCode } = await requester.post('/api/carts/' + idCart + '/products/' + idProd)
 

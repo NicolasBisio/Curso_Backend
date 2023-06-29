@@ -2,18 +2,18 @@ import chai from 'chai'
 import supertest from 'supertest'
 import mongoose from 'mongoose';
 import { config } from '../src/config/config.js';
+import { logger } from '../src/utils/index.js';
+logger
 
-mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
+await mongoose.connect(config.database.MONGOURL, { dbName: config.database.DB })
     .then(conn => logger.info('Conexión a la DB establecida.'))
 
 const expect = chai.expect;
 const requester = supertest('http://localhost:3000')
 
-describe('Testing endpoints router products', () => {
+describe('Testing endpoints router products', function () {
 
-    before(function () {
-        this.timeout(5000)
-    })
+    this.timeout(5000)
 
     describe('Testing endpoint GET /api/products/', () => {
 
