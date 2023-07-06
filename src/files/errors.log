@@ -945,3 +945,9 @@
   code: 400,
   level: 'error'
 }
+{
+  info: "Expected a valid Cart Id, instead recieved: '64a6d87ef6b5b1edbf1da02e'.",
+  code: 400,
+  level: 'error'
+}
+{ level: 'error' }

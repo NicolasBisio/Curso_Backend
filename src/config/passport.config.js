@@ -1,7 +1,7 @@
 import passport from 'passport';
 import local from 'passport-local';
 import github from 'passport-github2';
-import { usersModel } from '../dao/models/users.models.js';
+import { usersModel, cartsModel } from '../dao/models/index.js';
 import { hashUtils } from "../utils/index.js"
 
 export const inicializaEstrategias = () => {
@@ -61,8 +61,13 @@ export const inicializaEstrategias = () => {
             }
 
             let newUser = await usersModel.create({
-                name, last_name, email: username, age,
-                password: hashUtils.createHash(password), role
+                name,
+                last_name,
+                email: username,
+                age,
+                password: hashUtils.createHash(password),
+                role,
+                cart: await cartsModel.create({ products: [] }),
             })
 
             return done(null, newUser);
@@ -75,6 +80,8 @@ export const inicializaEstrategias = () => {
 
     passport.use('login', new local.Strategy({ usernameField: 'email' }, async (username, password, done) => {
 
+        console.log('Entró al passport.login')
+        
         try {
 
             if (!username || !password) return done(null, false)

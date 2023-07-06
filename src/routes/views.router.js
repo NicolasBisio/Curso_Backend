@@ -30,7 +30,7 @@ router.get('/', auth, viewsManager.getHome)
 
 router.get('/signUp', auth2, viewsManager.signUp)
 
-router.get('/login', auth2, viewsManager.login)
+router.get('/login', /* auth2, */ viewsManager.login)
 
 router.get('/loginCurrent', authCurrent, viewsManager.loginCurrent)
 

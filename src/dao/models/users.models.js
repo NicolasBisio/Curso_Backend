@@ -12,7 +12,7 @@ const usersSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'carts'
     },
-    role: String
+    role: { type: String, default: "user" }
 });
 
 export const usersModel = model(usersCollection, usersSchema);

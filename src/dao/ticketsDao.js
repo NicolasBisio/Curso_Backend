@@ -1,4 +1,4 @@
-import { ticketsModel } from "./models/tickets.models.js";
+import { ticketsModel } from "./models/index.js";
 import { logger } from "../utils/index.js";
 import { DB } from './singleton.js'
 

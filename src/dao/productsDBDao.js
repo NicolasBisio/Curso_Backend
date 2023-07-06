@@ -1,4 +1,4 @@
-import { productsModel } from './models/products.models.js';
+import { productsModel } from './models/index.js';
 import { logger } from '../utils/index.js';
 
 export class ProductsDBDao {

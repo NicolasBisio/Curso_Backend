@@ -1,4 +1,4 @@
-import { cartsModel } from './models/carts.models.js';
+import { cartsModel } from './models/index.js';
 import { logger } from '../utils/index.js';
 
 export class CartsDBDao {
@@ -13,6 +13,7 @@ export class CartsDBDao {
         }
     }
 
+    
     async getById(idCart) {
         try {
             return await cartsModel.findOne({ _id: idCart }).populate('products.productId')

@@ -118,7 +118,7 @@ class CartManager {
 
     async sendPurchase(req, res) {
         let idCart = req.params.cid;
-        let email = req.body.email;
+        let email = req.user.email;
         let cart;
         let outOfStock = [];
         let productsOrder = [];
