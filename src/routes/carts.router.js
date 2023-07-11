@@ -1,24 +1,55 @@
 import { Router } from "express";
-import passport from 'passport';
 import { cartManager } from "../controllers/index.js";
-import { authorization } from "../middlewares/auth.middleware.js";
+import { auth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", passport.authenticate('login'), authorization('user'), cartManager.getCarts)
+router.get(
+    "/",
+    auth(['user'], '/login'),
+    cartManager.getCarts
+)
 
-router.get("/:cid", cartManager.getCartById)
+router.get(
+    "/:cid",
+    auth(['user'], '/login'),
+    cartManager.getCartById
+)
 
-router.post("/", cartManager.addCart)
+router.post(
+    "/",
+    auth(['user'], '/login'),
+    cartManager.addCart
+)
 
-router.post("/:cid/products/:pid", cartManager.addProductToCart)
+router.post(
+    "/:cid/products/:pid",
+    auth(['user'], '/login'),
+    cartManager.addProductToCart
+)
 
-router.post("/:cid/purchase", cartManager.sendPurchase)
+router.post(
+    "/:cid/purchase",
+    auth(['user'], '/login'),
+    cartManager.sendPurchase
+)
 
-router.put("/:cid/products/:pid", cartManager.updateProductFromCart)
+router.put(
+    "/:cid/products/:pid",
+    auth(['user'], '/login'),
+    cartManager.updateProductFromCart
+)
 
-router.delete("/:cid", cartManager.deleteCart)
+router.delete(
+    "/:cid",
+    auth(['user'], '/login'),
+    cartManager.deleteCart
+)
 
-router.delete("/:cid/products/:pid", cartManager.deleteProductFromCart)
+router.delete(
+    "/:cid/products/:pid",
+    auth(['user'], '/login'),
+    cartManager.deleteProductFromCart
+)
 
 export { router as cartsRouter };
