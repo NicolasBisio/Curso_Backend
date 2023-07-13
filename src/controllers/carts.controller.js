@@ -1,9 +1,10 @@
+import mongoose from 'mongoose';
 import { customError, errorCodes, cartsErrors, productsErrors } from '../errors/index.js';
 import { cartsService, productsService, ticketsService } from '../services/index.js';
 import { logger } from '../utils/index.js'
 import { v4 as uuidv4 } from 'uuid';
 
-class CartManager {
+class CartsController {
     constructor() {
         this.getCarts = this.getCarts.bind(this);
         this.addCart = this.addCart.bind(this);
@@ -34,11 +35,11 @@ class CartManager {
         }
 
     }
-    
+
     async getCartById(req, res) {
         let idCart = req.params.cid;
         let cartById;
-        
+
         try {
             cartById = await cartsService.getCartById(idCart)
             if (cartById) {
@@ -49,14 +50,22 @@ class CartManager {
             } else {
                 customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
             }
-            
+
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format.' })
+                }
+            }
+
             logger.error(error)
             return res.status(error.code).json({ message: error.message })
         }
-        
+
     }
-    
+
     async addCart(req, res) {
         let newCart = {
             products: []
@@ -290,4 +299,4 @@ class CartManager {
 
 }
 
-export const cartManager = new CartManager()
+export const cartsController = new CartsController()

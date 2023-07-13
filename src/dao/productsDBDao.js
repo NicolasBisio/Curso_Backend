@@ -6,52 +6,27 @@ export class ProductsDBDao {
     }
 
     async get() {
-        try {
-            return await productsModel.find()
-        } catch (error) {
-            logger.error(error)
-        }
+        return await productsModel.find()
     }
 
     async getById(idProd) {
-        try {
-            return await productsModel.find({ _id: idProd })
-        } catch (error) {
-            logger.error(error)
-            return undefined
-        }
+        return await productsModel.findById(idProd)
     }
 
     async post(product) {
-        try {
-            return await productsModel.create(product)
-        } catch (error) {
-            logger.error(error)
-        }
+        return await productsModel.create(product)
     }
 
     async postMany(products) {
-        try {
-            return await productsModel.insertMany(products)
-        } catch (error) {
-            logger.error(error)
-        }
+        return await productsModel.insertMany(products)
     }
 
     async updateById(idProd, product) {
-        try {
-            return await productsModel.updateOne({ _id: idProd }, product)
-        } catch (error) {
-            logger.error(error)
-        }
+        return await productsModel.updateOne({ _id: idProd }, product)
     }
 
     async deleteById(idProd) {
-        try {
-            return await productsModel.deleteOne({ _id: idProd });
-        } catch (error) {
-            logger.error(error)
-        }
+        return await productsModel.deleteOne({ _id: idProd });
     }
 
 }

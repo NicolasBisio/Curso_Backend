@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cartManager } from "../controllers/index.js";
+import { cartsController } from "../controllers/index.js";
 import { auth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
@@ -7,49 +7,49 @@ const router = Router();
 router.get(
     "/",
     auth(['user'], '/login'),
-    cartManager.getCarts
+    cartsController.getCarts
 )
 
 router.get(
     "/:cid",
     auth(['user'], '/login'),
-    cartManager.getCartById
+    cartsController.getCartById
 )
 
 router.post(
     "/",
     auth(['user'], '/login'),
-    cartManager.addCart
+    cartsController.addCart
 )
 
 router.post(
     "/:cid/products/:pid",
     auth(['user'], '/login'),
-    cartManager.addProductToCart
+    cartsController.addProductToCart
 )
 
 router.post(
     "/:cid/purchase",
     auth(['user'], '/login'),
-    cartManager.sendPurchase
+    cartsController.sendPurchase
 )
 
 router.put(
     "/:cid/products/:pid",
     auth(['user'], '/login'),
-    cartManager.updateProductFromCart
+    cartsController.updateProductFromCart
 )
 
 router.delete(
     "/:cid",
     auth(['user'], '/login'),
-    cartManager.deleteCart
+    cartsController.deleteCart
 )
 
 router.delete(
     "/:cid/products/:pid",
     auth(['user'], '/login'),
-    cartManager.deleteProductFromCart
+    cartsController.deleteProductFromCart
 )
 
 export { router as cartsRouter };

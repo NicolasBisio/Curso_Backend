@@ -1,7 +1,7 @@
 import { productsModel, cartsModel } from '../dao/models/index.js';
 import { productsService } from '../services/index.js';
 
-class ViewsManager {
+class ViewsController {
 
     async getProducts(req, res) {
         let products;
@@ -93,4 +93,4 @@ class ViewsManager {
 
 }
 
-export const viewsManager = new ViewsManager()
+export const viewsController = new ViewsController()

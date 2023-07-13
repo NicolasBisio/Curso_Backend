@@ -22,6 +22,6 @@ messageText.addEventListener('keydown', (evento) => {
 
 socket.on('newMessage',(message)=>{
     messageContainer.innerHTML+=`<br><strong>${message.user}</strong> dice <i>${message.message}</i>`
-
+    
     messageContainer.scrollTop=messageContainer.scrollHeight
 })

@@ -1,22 +1,21 @@
+import mongoose from 'mongoose';
 import { customError, errorCodes, productsErrors } from '../errors/index.js';
 import { productsService } from '../services/index.js';
 import { logger } from '../utils/index.js';
 import { generateFakeProduct } from '../utils/utils.js';
 
-class ProductManager {
+class ProductsController {
 
     async getProducts(req, res) {
         let products;
+
         try {
             products = await productsService.getProducts()
-            if (products) {
-                res.setHeader('Content-Type', 'application/json');
-                res.status(200).json({
-                    products
-                })
-            } else {
-                customError.customError('DB Error', productsErrors.getProductsError(), errorCodes.ERROR_DB)
-            }
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({
+                products
+            })
 
         } catch (error) {
             logger.error(error)
@@ -42,6 +41,14 @@ class ProductManager {
             }
 
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -78,9 +85,11 @@ class ProductManager {
             fakeProducts.push(generateFakeProduct())
         }
 
+        let productsCreated = await productsService.createManyProducts(fakeProducts)
+
         res.setHeader('Content-Type', 'application/json');
-        return res.status(200).json({
-            fakeProducts
+        return res.status(201).json({
+            productsCreated
         })
     }
 
@@ -228,4 +237,4 @@ class ProductManager {
 
 }
 
-export const productManager = new ProductManager()
+export const productsController = new ProductsController()

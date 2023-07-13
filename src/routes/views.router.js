@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { viewsManager } from '../controllers/index.js';
+import { viewsController } from '../controllers/index.js';
 
 const router = Router();
 
@@ -18,20 +18,20 @@ const authCurrent = (req, res, next) => {
     next();
 }
 
-router.get('/products', viewsManager.getProducts)
+router.get('/products', viewsController.getProducts)
 
-router.get('/cart/:cid', viewsManager.getCartById)
+router.get('/cart/:cid', viewsController.getCartById)
 
-router.get('/realtimeproducts', viewsManager.getProductsRealTime)
+router.get('/realtimeproducts', viewsController.getProductsRealTime)
 
-router.get('/chat', viewsManager.getChat)
+router.get('/chat', viewsController.getChat)
 
-router.get('/', auth, viewsManager.getHome)
+router.get('/', auth, viewsController.getHome)
 
-router.get('/signUp', auth2, viewsManager.signUp)
+router.get('/signUp', auth2, viewsController.signUp)
 
-router.get('/login', /* auth2, */ viewsManager.login)
+router.get('/login', viewsController.login)
 
-router.get('/loginCurrent', authCurrent, viewsManager.loginCurrent)
+router.get('/loginCurrent', authCurrent, viewsController.loginCurrent)
 
 export { router as viewsRouter}

@@ -1,57 +1,55 @@
 import { Router } from "express";
-import { productManager } from "../controllers/index.js";
+import { productsController } from "../controllers/index.js";
 import { auth } from "../middlewares/auth.middleware.js";
-import passport from 'passport';
 
 const router = Router();
 
 router.get(
     '/',
-    passport.authenticate('login'),
     auth(['public'], '/login'),
-    productManager.getProducts
+    productsController.getProducts
 )
 
 router.get(
     '/:pid',
     auth(['public'], '/login'),
-    productManager.getProductById
+    productsController.getProductById
 )
 
 router.get(
     '/title/:title',
     auth(['public'], '/login'),
-    productManager.getProductByTitle
+    productsController.getProductByTitle
 )
 
 router.get(
     '/fake/mockingproducts',
     auth(['admin'], '/login'),
-    productManager.getFakeProducts
+    productsController.getFakeProducts
 )
 
 router.post(
     "/",
     auth(['admin'], '/login'),
-    productManager.addProduct
+    productsController.addProduct
 )
 
 router.post(
     "/massive",
     auth(['admin'], '/login'),
-    productManager.addProductsMassive
+    productsController.addProductsMassive
 )
 
 router.put(
     "/:pid",
     auth(['admin'], '/login'),
-    productManager.updateProduct
+    productsController.updateProduct
 )
 
 router.delete(
     "/:pid",
     auth(['admin'], '/login'),
-    productManager.deleteProduct
+    productsController.deleteProduct
 )
 
 export { router as productsRouter }

@@ -1,5 +1,5 @@
-export { cartManager } from "./cartManager.js";
-export { productManager } from "./productManager.js";
-export { messageManager } from "./messageManager.js";
-export { viewsManager } from "./viewsManager.js";
+export { cartsController } from "./carts.controller.js";
+export { productsController } from "./products.controller.js";
+export { messagesController } from "./messages.controller.js";
+export { viewsController } from "./views.controller.js";
 export { sessionsManager } from "./sessions.controller.js";

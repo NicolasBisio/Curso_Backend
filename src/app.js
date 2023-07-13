@@ -12,7 +12,7 @@ import { inicializaEstrategias } from './config/passport.config.js';
 
 import { cartsRouter, productsRouter, sessionsRouter, viewsRouter } from './routes/index.js'
 
-import { messageManager } from './controllers/index.js';
+import { messagesController } from './controllers/index.js';
 import { errorMiddleware } from './middlewares/error.middleware.js';
 import { logger, swaggerSpecs } from './utils/index.js';
 
@@ -63,7 +63,7 @@ app.use("/loggertest", (req, res) => {
     res.status(200).send('Loggers Ok.')
 });
 
-app.use(express.static('../public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
     res.setHeader('Content-Type', 'aplication/json')
@@ -80,24 +80,14 @@ const serverHttp = app.listen(PORT, () => {
 
 const serverSockets = new Server(serverHttp);
 
-const messages = []
-
 serverSockets.on('connection', (socket) => {
     logger.info(`Se han conectado, socket id ${socket.id}`)
 
     socket.on('message', (message) => {
-        logger.info(`${message.user} dice ${message.message}`);
-
-        const newMessage = new messageManager
-
-        newMessage.addMessage(message)
-
+        messagesController.addMessage(message)
         serverSockets.emit('newMessage', message)
-
     })
 
 })
-
-export { messages };
 
 serverHttp.on('error', (error) => logger.fatal(error));
