@@ -40,9 +40,10 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: config.database.MONGOURL, dbName: config.database.DB,
-        ttl: 600
+        ttl: 3000
     })
 }))
+
 inicializaEstrategias();
 app.use(passport.initialize());
 app.use(passport.session());
@@ -81,8 +82,6 @@ const serverHttp = app.listen(PORT, () => {
 const serverSockets = new Server(serverHttp);
 
 serverSockets.on('connection', (socket) => {
-    logger.info(`Se han conectado, socket id ${socket.id}`)
-
     socket.on('message', (message) => {
         messagesController.addMessage(message)
         serverSockets.emit('newMessage', message)

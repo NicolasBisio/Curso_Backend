@@ -34,8 +34,6 @@ class ViewsController {
         res.status(200).render('products', {
             products: products.docs,
             totalPages, hasPrevPage, hasNextPage, prevPage, nextPage,
-            fullName: req.session.user.name + ' ' + req.session.user.last_name,
-            role: req.session.user.role
         })
 
     }
