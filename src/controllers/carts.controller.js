@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import { customError, errorCodes, cartsErrors, productsErrors } from '../errors/index.js';
 import { cartsService, productsService, ticketsService } from '../services/index.js';
-import { logger } from '../utils/index.js'
+import { logger } from '../utils/index.js';
 import { v4 as uuidv4 } from 'uuid';
+import nodemailer from 'nodemailer';
+import { config } from '../config/config.js';
 
 class CartsController {
     constructor() {
@@ -96,6 +98,14 @@ class CartsController {
             if (!prodDB) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
 
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Product Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -105,6 +115,14 @@ class CartsController {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Cart Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -135,7 +153,16 @@ class CartsController {
         try {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
+            if (cart.products.length === 0) customError.customError('Empty Cart', cartsErrors.emptyCartError(), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -149,10 +176,10 @@ class CartsController {
                 logger.error(error);
             }
 
-            if (cartProduct.quantity > dbProduct[0].stock) {
+            if (cartProduct.quantity > dbProduct.stock) {
                 outOfStock.push(cartProduct.productId._id);
             } else {
-                dbProduct[0].stock = dbProduct[0].stock - cartProduct.quantity;
+                dbProduct.stock = dbProduct.stock - cartProduct.quantity;
                 productsOrder.push(dbProduct);
             }
         }));
@@ -161,11 +188,11 @@ class CartsController {
 
         productsOrder.forEach(async (prodDB) => {
 
-            let prodDBId = prodDB[0]._id.toString()
-            await productsService.updateProductById(prodDBId, prodDB[0])
-            await cartsService.deleteProductFromCart(idCart, prodDB[0])
+            let prodDBId = prodDB._id.toString()
+            await productsService.updateProductById(prodDBId, prodDB)
+            await cartsService.deleteProductFromCart(idCart, prodDB)
 
-            amount += prodDB[0].price;
+            amount += prodDB.price;
         });
 
         let newOrder = {
@@ -175,6 +202,29 @@ class CartsController {
         }
 
         ticketsService.createTicket(newOrder)
+
+        const transporter = nodemailer.createTransport({
+            service: config.mailing.HOST_MAILING,
+            port: config.mailing.PORT_MAILING,
+            auth: {
+                user: config.mailing.USER_MAILING,
+                pass: config.mailing.PASS_MAILING
+            }
+        })
+
+        let result = await transporter.sendMail({
+            from: config.mailing.USER_MAILING,
+            to: 'nb.bisio@gmail.com',
+            subject: `Su pedido fue creado exitosamente`,
+            html: `
+            <h1>¡Gracias por su compra!</h1>
+            <h3>Su orden, con Id ${newOrder.code}, fue creada exitosamente</h3> 
+            <div>Detallamos el pedido a continuación:</div>
+            <div>${productsOrder}</div>
+            `
+        })
+
+        logger.info('Resultado del mail:', result)
 
         if (outOfStock.length > 0) {
             res.setHeader('Content-Type', 'application/json');
@@ -201,6 +251,14 @@ class CartsController {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Cart Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -212,6 +270,14 @@ class CartsController {
             if (!product) customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
             product.quantity = newQuantity;
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Product Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -234,6 +300,14 @@ class CartsController {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -255,6 +329,14 @@ class CartsController {
             }
 
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.fatal(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -271,6 +353,14 @@ class CartsController {
             cart = await cartsService.getCartById(idCart)
             if (!cart) customError.customError('Invalid Cart Id', cartsErrors.getCartByIdError(idCart), errorCodes.ERROR_ARGUMENTS)
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Cart Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -290,6 +380,14 @@ class CartsController {
                 customError.customError('Invalid Product Id', productsErrors.getProductByIdError(idProd), errorCodes.ERROR_ARGUMENTS)
             }
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Product Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })

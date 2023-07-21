@@ -29,8 +29,6 @@ describe('Testing endpoints router carts', function () {
 
             let { statusCode, body: body3 } = await requester.post('/api/carts/' + idCart + '/products/' + idProd)
 
-            console.log(statusCode, body3)
-
             expect(body3).to.be.ok
             expect(statusCode).to.be.equal(201)
 

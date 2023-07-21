@@ -3,6 +3,7 @@ class SessionsManager {
     async getCurrentUser(req, res) {
         let currentUser = req.user
 
+        res.setHeader("Content-Type", "application/json")
         return res.status(200).send({
             currentUser
         });

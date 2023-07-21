@@ -207,6 +207,14 @@ class ProductsController {
             }
 
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })
@@ -228,6 +236,14 @@ class ProductsController {
             }
 
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError) {
+                if (error.kind === "ObjectId") {
+                    logger.error(error)
+                    res.setHeader("Content-Type", "application/json")
+                    return res.send({ error: 'Invalid Id format' })
+                }
+            }
+
             logger.error(error)
             res.setHeader("Content-Type", "application/json")
             return res.status(error.code).json({ message: error.message })

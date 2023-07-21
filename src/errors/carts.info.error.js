@@ -17,6 +17,11 @@ class CartsErrors {
         return `Error getting carts from DB.`
     }
 
+    emptyCartError = () => {
+        return `Your cart is empty. Pelase add at least one product to the cart.`
+    }
+
+
 }
 
 export const cartsErrors = new CartsErrors()

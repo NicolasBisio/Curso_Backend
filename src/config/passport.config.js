@@ -80,8 +80,6 @@ export const inicializaEstrategias = () => {
 
     passport.use('login', new local.Strategy({ usernameField: 'email' }, async (username, password, done) => {
 
-        console.log('Entró al passport.login')
-        
         try {
 
             if (!username || !password) return done(null, false)

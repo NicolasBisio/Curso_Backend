@@ -1,4 +1,241 @@
 {
+  stringValue: '"64b9fe29027e4fbcd19a0a"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '64b9fe29027e4fbcd19a0a',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._deleteOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2941:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  stringValue: '"64b9fe29027e4fbcd19a0"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '64b9fe29027e4fbcd19a0',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._deleteOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2941:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  info: [Function: authenticationFailure],
+  code: 401,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  stringValue: '"6455709d9e17c50f74b969"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '6455709d9e17c50f74b969',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._updateThunk (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:3770:8)
+      at model.Query._updateOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:3879:23),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  stringValue: '"64b9acaf9178e067e8dec0"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '64b9acaf9178e067e8dec0',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { carts },
+  level: 'error'
+}
+{
+  info: "Expected a valid Cart Id, instead recieved: '64b9acaf9178e067e8dec011'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  info: "Expected a valid Cart Id, instead recieved: '64b9ce519ab579db7f8df311'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b96911'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  stringValue: '"6455709d9e17c50f74b969"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '6455709d9e17c50f74b969',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  stringValue: '"6455709d9e17c50f74b969"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '6455709d9e17c50f74b969',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  stringValue: '"64b9ce519ab579db7f8df3"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '64b9ce519ab579db7f8df3',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { carts },
+  level: 'error'
+}
+{
+  stringValue: '"64b9ce519ab579db7f8df3"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '64b9ce519ab579db7f8df3',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { carts },
+  level: 'error'
+}
+{
+  stringValue: '"6455709d9e17c50f74b969"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '6455709d9e17c50f74b969',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
+      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
+      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
+      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
+      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
+      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
+      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
+      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
+  valueType: 'string',
+  model: Model { products },
+  level: 'error'
+}
+{
+  info: "Expected a valid Cart Id, instead recieved: '647c1dcc90aa545d6a894440'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b9698'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b9'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
+  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b969'.",
+  code: 400,
+  redirectPath: undefined,
+  level: 'error'
+}
+{
   stringValue: '"647c20f2f61df68f3ce5a1"',
   messageFormat: undefined,
   kind: 'ObjectId',
@@ -17,1251 +254,5 @@
       at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
   valueType: 'string',
   model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c20f2f61df68f3ce5a1'.",
-  code: 400,
-  level: 'error'
-}
-{
-  info: 'Incomplete or invalid arguments:\n' +
-    "        - title: expected String, recieved 'undefined'.\n" +
-    "        - description: expected String, recieved 'undefined'.\n" +
-    "        - price: expected Number, recieved 'undefined'.\n" +
-    "        - thumbnail: expected String, recieved 'undefined'.\n" +
-    "        - code: expected String, recieved 'undefined'.\n" +
-    "        - stock: expected Number, recieved 'undefined'.",
-  code: 400,
-  level: 'error'
-}
-{
-  info: 'Incomplete or invalid arguments:\n' +
-    "        - title: expected String, recieved 'undefined'.\n" +
-    "        - description: expected String, recieved 'undefined'.\n" +
-    "        - price: expected Number, recieved 'undefined'.\n" +
-    "        - thumbnail: expected String, recieved 'undefined'.\n" +
-    "        - code: expected String, recieved 'undefined'.\n" +
-    "        - stock: expected Number, recieved 'undefined'.",
-  code: 400,
-  level: 'error'
-}
-{
-  reason: TopologyDescription {
-    type: 'ReplicaSetNoPrimary',
-    servers: Map(3) {
-      'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721965277,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721965277,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721965278,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      }
-    },
-    stale: false,
-    compatible: true,
-    heartbeatFrequencyMS: 10000,
-    localThresholdMS: 15,
-    setName: 'atlas-i4r1a7-shard-0',
-    maxElectionId: new ObjectId("7fffffff000000000000010b"),
-    maxSetVersion: 8,
-    commonWireVersion: 0,
-    logicalSessionTimeoutMinutes: null
-  },
-  code: undefined,
-  level: 'error',
-  [Symbol(errorLabels)]: Set(0) {}
-}
-{ info: 'Error getting products from DB.', code: 500, level: 'error' }
-{
-  reason: TopologyDescription {
-    type: 'ReplicaSetNoPrimary',
-    servers: Map(3) {
-      'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721967331,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721967332,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721967333,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      }
-    },
-    stale: false,
-    compatible: true,
-    heartbeatFrequencyMS: 10000,
-    localThresholdMS: 15,
-    setName: 'atlas-i4r1a7-shard-0',
-    maxElectionId: new ObjectId("7fffffff000000000000010b"),
-    maxSetVersion: 8,
-    commonWireVersion: 0,
-    logicalSessionTimeoutMinutes: null
-  },
-  code: undefined,
-  level: 'error',
-  [Symbol(errorLabels)]: Set(0) {}
-}
-{ info: 'Error getting products from DB.', code: 500, level: 'error' }
-{
-  reason: TopologyDescription {
-    type: 'ReplicaSetNoPrimary',
-    servers: Map(3) {
-      'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721969389,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721969390,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721969391,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      }
-    },
-    stale: false,
-    compatible: true,
-    heartbeatFrequencyMS: 10000,
-    localThresholdMS: 15,
-    setName: 'atlas-i4r1a7-shard-0',
-    maxElectionId: new ObjectId("7fffffff000000000000010b"),
-    maxSetVersion: 8,
-    commonWireVersion: 0,
-    logicalSessionTimeoutMinutes: null
-  },
-  code: undefined,
-  level: 'error',
-  [Symbol(errorLabels)]: Set(0) {}
-}
-{ info: 'Error getting products from DB.', code: 500, level: 'error' }
-{
-  reason: TopologyDescription {
-    type: 'ReplicaSetNoPrimary',
-    servers: Map(3) {
-      'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721971442,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-00.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721971443,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-02.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      },
-      'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017' => ServerDescription {
-        address: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net:27017',
-        type: 'Unknown',
-        hosts: [],
-        passives: [],
-        arbiters: [],
-        tags: {},
-        minWireVersion: 0,
-        maxWireVersion: 0,
-        roundTripTime: -1,
-        lastUpdateTime: 721971443,
-        lastWriteDate: 0,
-        error: MongoNetworkError: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-            at connectionFailureError (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:383:20)
-            at TLSSocket.<anonymous> (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongodb\lib\cmap\connect.js:307:22)
-            at Object.onceWrapper (node:events:642:26)
-            at TLSSocket.emit (node:events:527:28)
-            at emitErrorNT (node:internal/streams/destroy:157:8)
-            at emitErrorCloseNT (node:internal/streams/destroy:122:3)
-            at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-          cause: Error: getaddrinfo ENOTFOUND ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net
-              at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26) {
-            errno: -3008,
-            code: 'ENOTFOUND',
-            syscall: 'getaddrinfo',
-            hostname: 'ac-ko5xf77-shard-00-01.bkyuey1.mongodb.net'
-          },
-          [Symbol(errorLabels)]: Set(1) { 'ResetPool' }
-        },
-        topologyVersion: null,
-        setName: null,
-        setVersion: null,
-        electionId: null,
-        logicalSessionTimeoutMinutes: null,
-        primary: null,
-        me: null,
-        '$clusterTime': null
-      }
-    },
-    stale: false,
-    compatible: true,
-    heartbeatFrequencyMS: 10000,
-    localThresholdMS: 15,
-    setName: 'atlas-i4r1a7-shard-0',
-    maxElectionId: new ObjectId("7fffffff000000000000010b"),
-    maxSetVersion: 8,
-    commonWireVersion: 0,
-    logicalSessionTimeoutMinutes: null
-  },
-  code: undefined,
-  level: 'error',
-  [Symbol(errorLabels)]: Set(0) {}
-}
-{
-  stringValue: '"647c1dcc90aa545d6a89444"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c1dcc90aa545d6a89444',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c1dcc90aa545d6a89444'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"647c1dcc90aa545d6a89444"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c1dcc90aa545d6a89444',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c1dcc90aa545d6a89444'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"6455709d9e17c50f74b969"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '6455709d9e17c50f74b969',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b969'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"647c20f2f61df68f3ce5a19"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c20f2f61df68f3ce5a19',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c20f2f61df68f3ce5a19'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  info: "Expected an Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"Id_incorrecto"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'Id_incorrecto',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  info: "Expected an Id, instead recieved: 'Id_incorrecto'.",
-  code: 400,
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '64a6d87ef6b5b1edbf1da02e'.",
-  code: 400,
-  level: 'error'
-}
-{ level: 'error' }
-{
-  stringValue: '"abc"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: 'abc',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: 'abc'.",
-  code: 400,
-  level: 'error'
-}
-{
-  stringValue: '"647c20f2f61df68f3ce5"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c20f2f61df68f3ce5',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c20f2f61df68f3ce5'.",
-  code: 400,
-  level: 'error'
-}
-{ info: [Function: authenticationFailure], code: 401, level: 'error' }
-{ info: [Function: authenticationFailure], code: 401, level: 'error' }
-{ info: [Function: authenticationFailure], code: 401, level: 'error' }
-{ info: [Function: authenticationFailure], code: 401, level: 'error' }
-{ code: 'ERR_HTTP_HEADERS_SENT', level: 'error' }
-{ info: [Function: authorizationFailure], code: 403, level: 'error' }
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  stringValue: '"6455709d9e17c50f74b969"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '6455709d9e17c50f74b969',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  stringValue: '"12134"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '12134',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  stringValue: '"12134"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '12134',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  stringValue: '"12134"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '12134',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._find (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2203:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  info: "Expected an Id, instead recieved: '6455709d9e17c50f74b96111'.",
-  code: 400,
-  redirectPath: undefined,
-  level: 'error'
-}
-{
-  stringValue: '"1234"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '1234',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { products },
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{ level: 'error' }
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
-  level: 'error'
-}
-{
-  stringValue: '"647c2"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c2',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  stringValue: '"647c2"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '647c2',
-  path: '_id',
-  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
-      at new ObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\bson\lib\bson.cjs:2014:23)
-      at castObjectId (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast\objectid.js:25:12)
-      at ObjectId.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schema\objectid.js:246:12)
-      at ObjectId.SchemaType.applySetters (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1202:12)
-      at ObjectId.SchemaType.castForQuery (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\schematype.js:1613:15)
-      at cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\cast.js:348:32)
-      at model.Query.Query.cast (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4790:12)
-      at model.Query.Query._castConditions (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2177:10)
-      at model.Query._findOne (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:2465:8)
-      at model.Query.exec (C:\Users\nbisi\Desktop\Coderhouse\proyecto_backend\node_modules\mongoose\lib\query.js:4321:28),
-  valueType: 'string',
-  model: Model { carts },
-  level: 'error'
-}
-{
-  info: "Expected a valid Cart Id, instead recieved: '647c20f2f61df68f3ce5a111'.",
-  code: 400,
-  redirectPath: undefined,
-  level: 'error'
-}
-{
-  info: [Function: authorizationFailure],
-  code: 403,
-  redirectPath: '/login',
   level: 'error'
 }
